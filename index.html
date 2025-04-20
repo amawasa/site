@@ -109,14 +109,13 @@
       
     </div>
   </div>
-
+<img class="random-image" id="flash-image" src="" alt="恐怖ワード" style="display: none;">
   <footer>
     © 2025 3年3組
   </footer>
 </div>
 
 <!-- 🔴 恐怖ワードの一瞬表示 -->
-<img id="flash-image" src="" alt="恐怖ワード" style="display: none;">
 <style>
   body {
   padding: 0;
@@ -318,7 +317,15 @@
     }
 
     /* 恐怖ワード */
-
+.random-image {
+  position: absolute; /* 画像の位置を絶対に設定 */
+  width: 30%; /* 画像のサイズ */
+  height: auto;
+  background-image: url('image.png'); /* 画像のURLを指定 */
+  background-size: cover;
+  background-position: center;
+  display: none; /* 初期状態では非表示 */
+}
   </style>
 
 <script>
@@ -398,9 +405,29 @@ setInterval(() => {
   const randomSrc = horrorImages[Math.floor(Math.random() * horrorImages.length)];
   flashImage.src = randomSrc;
 
-  // ランダムな位置に配置（画面サイズを考慮して調整）
-  const randomX = Math.random() * (window.innerWidth - 150); // 最大幅150pxにして余白
-  const randomY = Math.random() * (window.innerHeight - 150);
+  // 画面の四隅からランダムに配置
+  const randomCorner = Math.floor(Math.random() * 4); // 0-3のランダムな数
+  let randomX, randomY;
+
+  switch (randomCorner) {
+    case 0: // 左上
+      randomX = 0;
+      randomY = 0;
+      break;
+    case 1: // 右上
+      randomX = window.innerWidth - 150; // 画像の幅を考慮
+      randomY = 0;
+      break;
+    case 2: // 左下
+      randomX = 0;
+      randomY = window.innerHeight - 150; // 画像の高さを考慮
+      break;
+    case 3: // 右下
+      randomX = window.innerWidth - 150;
+      randomY = window.innerHeight - 150;
+      break;
+  }
+
   flashImage.style.left = `${randomX}px`;
   flashImage.style.top = `${randomY}px`;
 
@@ -410,6 +437,7 @@ setInterval(() => {
     flashImage.style.display = 'none';
   }, 300); // 0.3秒だけ表示
 }, 8000);
+
 
 
           // 画像のリストを作成（メイン背景以外）
