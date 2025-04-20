@@ -382,14 +382,6 @@
   }
 
 
-  // タッチ時：赤フラッシュ
-  document.body.addEventListener("touchstart", () => {
-    document.body.classList.add("flash");
-    setTimeout(() => {
-      document.body.classList.remove("flash");
-    }, 200);
-  });
-
       // オーバーレイを作成する
         const overlay = document.createElement('div');
         overlay.classList.add('overlay');
