@@ -178,7 +178,6 @@
       display: none;
       animation: fadeIn 2s ease-in-out forwards;
       margin: 0;
-    padding: 10px;
     }
 
     @keyframes fadeIn {
@@ -270,8 +269,7 @@
     top: 0;
     left: 0;
     z-index: 9999; /* 最前面に表示 */
-    pointer-events: none; /* 当たり判定なし（クリックを無視） */
-    width: 100vw;  /* ビューポート幅100% */
+    pointer-events: none; /* 当たり判定なし（クリックを無視） */  /* ビューポート幅100% */
     height: 100vh; /* ビューポート高さ100% */
     object-fit: cover; /* 画面にフィットさせる */
     animation: zuum 50s infinite;
@@ -279,10 +277,10 @@
 
     @keyframes zuum {
             0%, 54%, 100% {
-        opacity: 0.7;
+        opacity: 0.4;
       }
             30%, 77% {
-        opacity: 0.5;
+        opacity: 0.2;
       }
     }
 
