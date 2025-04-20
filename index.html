@@ -330,6 +330,7 @@
   background-size: cover;
   background-position: center;
   display: none; /* 初期状態では非表示 */
+  opacity: 0.1;
 }
   </style>
 
@@ -440,7 +441,7 @@ setInterval(() => {
 
   setTimeout(() => {
     flashImage.style.display = 'none';
-  }, 300); // 0.3秒だけ表示
+  }, 450); // 0.3秒だけ表示
 }, 8000);
 
 
@@ -468,7 +469,7 @@ setInterval(() => {
             }, 500); // 300ms = 0.3秒
 
             // 次回の変更時間をランダムに設定（1秒から5秒の間）
-            const randomTime = Math.floor(Math.random() * 11000) + 6000; // 1000ms (1秒) から 5000ms (5秒) の間
+            const randomTime = Math.floor(Math.random() * 6000) + 26000; // 1000ms (1秒) から 5000ms (5秒) の間
             setTimeout(changeBackground, randomTime); // 次回の画像変更を設定
         }
 
