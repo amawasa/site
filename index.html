@@ -123,7 +123,7 @@
   color: #fff;
   font-family: 'Arial', sans-serif;
   text-align: center;
-  font-size: 1.2em;
+  font-size: 1.5rem; /* スマホ用のフォントサイズ */
   background-image: url('background1.jpg'); /* メインの背景画像 */
   background-size: cover; /* 画像が画面全体にカバーされる */
   background-position: center;
@@ -177,6 +177,8 @@
     #main-content {
       display: none;
       animation: fadeIn 2s ease-in-out forwards;
+      margin: 0;
+    padding: 10px;
     }
 
     @keyframes fadeIn {
@@ -192,11 +194,11 @@
 
     .タイ画像 {
       animation: flicker 2s infinite;
-  width: 100%; /* 横幅を100%に設定 */
-  height: auto; /* 高さは自動で調整 */
-  object-fit: cover; /* 画像の縦横比を保ちながら、枠に収める */
-  min-height: 100px; /* 最低高さを設定 */ 
-  max-height: 500px;
+    max-height: 300px;
+    width: 100%;
+   object-fit: cover; /* 画像の縦横比を保ちながら、枠に収める */
+   min-height: 100px; /* 最低高さを設定 */ 
+   max-height: 500px;
       filter: brightness(150%) contrast(120%);
       filter: brightness(150%); /* 画像を明るくする */
 
@@ -217,6 +219,8 @@
       padding: 40px 20px;
       margin: 30px;
       border-radius: 20px;
+      padding: 20px;
+     margin: 10px;
     }
 
     .content h2 {
@@ -244,6 +248,7 @@
       position: relative;
       white-space: pre-wrap;
       font-weight: bold;
+          font-size: 1.2em;
     }
 
     .glitch::after {
