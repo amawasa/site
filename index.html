@@ -118,22 +118,25 @@
 <!-- 🔴 恐怖ワードの一瞬表示 -->
 <img id="flash-image" src="" alt="恐怖ワード" style="display: none;">
 <style>
-    body {
-      padding: 0;
-      background-color: #000;
-      color: #fff;
-      font-family: 'Arial', sans-serif;
-      text-align: center;
-      font-size: 1.2em;
-      background-image: url('background1.jpg'); /* メインの背景画像 */
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      margin: 0;
-      background-size: 100%;
-      background-attachment: fixed;
-      transition: background-image 0.3s ease-in-out; /* 背景画像が切り替わる時のアニメーション */
-    }
+  body {
+  padding: 0;
+  background-color: #000;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  font-size: 1.2em;
+  background-image: url('background1.jpg'); /* メインの背景画像 */
+  background-size: cover; /* 画像が画面全体にカバーされる */
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0;
+  background-attachment: fixed;
+  transition: background-image 0.3s ease-in-out;
+  }
+  body{
+       font-size: 4vh;
+  }
+
 
     .warning-screen {
       position: fixed;
@@ -190,16 +193,23 @@
 
     .タイ画像 {
       animation: flicker 2s infinite;
-      height: 1%;
-      width: 50%;
+  width: 100%; /* 横幅を100%に設定 */
+  height: auto; /* 高さは自動で調整 */
+  object-fit: cover; /* 画像の縦横比を保ちながら、枠に収める */
+  min-height: 100px; /* 最低高さを設定 */ 
+  max-height: 500px;
+      filter: brightness(150%) contrast(120%);
+      filter: brightness(150%); /* 画像を明るくする */
+
+
     }
 
     @keyframes flicker {
      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-        opacity: 8;
+        opacity: 1;
       }
       20%, 22%, 24%, 55% {
-        opacity: 0.1;
+        opacity: 0.06;
         filter: brightness(150%);
       }
     }
