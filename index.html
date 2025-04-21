@@ -411,27 +411,7 @@ setInterval(() => {
   flashImage.src = randomSrc;
 
   // 画面の四隅からランダムに配置
-  const randomCorner = Math.floor(Math.random() * 4); // 0-3のランダムな数
-  let randomX, randomY;
-
-  switch (randomCorner) {
-    case 0: // 左上
-      randomX = 0;
-      randomY = 0;
-      break;
-    case 1: // 右上
-      randomX = window.innerWidth - 150; // 画像の幅を考慮
-      randomY = 0;
-      break;
-    case 2: // 左下
-      randomX = 0;
-      randomY = window.innerHeight - 150; // 画像の高さを考慮
-      break;
-    case 3: // 右下
-      randomX = window.innerWidth - 150;
-      randomY = window.innerHeight - 150;
-      break;
-  }
+  
 
   flashImage.style.left = `${randomX}px`;
   flashImage.style.top = `${randomY}px`;
