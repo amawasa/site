@@ -334,103 +334,44 @@
         document.body.appendChild(overlay);
 
 
-  // 🔴 恐怖ワードの出現ロジック
-// 恐怖画像のリスト（必要な画像ファイル名に変えてOK）
-const horrorImages = ['nc266400_血痕02質感あり【フリー素材あそび】.png','nc197747_赤い手形【ホラー09】.png']; // 画像ファイル名を入れてね
+  // 🔴 恐怖画像ジャンプスケア表示
+  const horrorImages = ['nc266400_血痕02質感あり【フリー素材あそび】.png','nc197747_赤い手形【ホラー09】.png'];
+  setInterval(() => {
+    const flashImage = document.getElementById('flash-image');
+    const randomSrc = horrorImages[Math.floor(Math.random() * horrorImages.length)];
+    flashImage.src = randomSrc;
 
-// 恐怖画像を表示する処理
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    const randomX = Math.random() * (windowWidth - flashImage.offsetWidth);
+    const randomY = Math.random() * (windowHeight - flashImage.offsetHeight);
 
-setInterval(() => {
-  const flashImage = document.getElementById('flash-image');
-  const randomSrc = horrorImages[Math.floor(Math.random() * horrorImages.length)];
-  flashImage.src = randomSrc;
+    flashImage.style.left = `${randomX}px`;
+    flashImage.style.top = `${randomY}px`;
+    flashImage.style.display = 'block';
 
-  // 画面サイズに応じてランダムな位置を設定
-  const windowWidth = window.innerWidth;
-  const windowHeight = window.innerHeight;
-  const randomX = Math.random() * (windowWidth - flashImage.offsetWidth);
-  const randomY = Math.random() * (windowHeight - flashImage.offsetHeight);
+    setTimeout(() => {
+      flashImage.style.display = 'none';
+    }, 450);
+  }, 8000);
 
-  flashImage.style.left = `${randomX}px`;
-  flashImage.style.top = `${randomY}px`;
+  // 🔁 背景画像の一瞬切り替え
+  const images = ['background2.jpg', 'background3.jpg', 'background4.jpg'];
 
-  flashImage.style.display = 'block';
+  function changeBackground() {
+    const randomImage = images[Math.floor(Math.random() * images.length)];
+    document.body.style.backgroundImage = `url(${randomImage})`;
 
-  setTimeout(() => {
-    flashImage.style.display = 'none';
-  }, 450);
-}, 8000);
+    setTimeout(() => {
+      document.body.style.backgroundImage = 'url(background1.jpg)';
+    }, 500); // 0.5秒表示
 
+    const randomTime = Math.floor(Math.random() * 6000) + 26000; // 26〜32秒の間でランダム
+    setTimeout(changeBackground, randomTime);
+  }
 
-          // 画像のリストを作成（メイン背景以外）
-        const images = [
-            'background2.jpg',
-            'background3.jpg',
-            'background4.jpg'
-        ];
+  changeBackground(); // 最初に一度呼び出す
 
-        let currentIndex = 0;
-
-        // 背景画像を変更する関数
-        function changeBackground() {
-            // ランダムに1つの画像を選択
-            const randomImage = images[Math.floor(Math.random() * images.length)];
-
-            // ランダムな画像を0.3秒間だけ表示
-            document.body.style.backgroundImage = `url(${randomImage})`;
-
-
-
-
-          // 画像のリストを作成（メイン背景以外）
-        const images = [
-            'background2.jpg',
-            'background3.jpg',
-            'background4.jpg'
-        ];
-
-        let currentIndex = 0;
-
-        // 背景画像を変更する関数
-        function changeBackground() {
-            // ランダムに1つの画像を選択
-            const randomImage = images[Math.floor(Math.random() * images.length)];
-
-            // ランダムな画像を0.3秒間だけ表示
-            document.body.style.backgroundImage = `url(${randomImage})`;
-
-
-
-
-          // 画像のリストを作成（メイン背景以外）
-        const images = [
-            'background2.jpg',
-            'background3.jpg',
-            'background4.jpg'
-        ];
-
-        let currentIndex = 0;
-
-        // 背景画像を変更する関数
-        function changeBackground() {
-            // ランダムに1つの画像を選択
-            const randomImage = images[Math.floor(Math.random() * images.length)];
-
-            // ランダムな画像を0.3秒間だけ表示
-            document.body.style.backgroundImage = `url(${randomImage})`;
-
-            // 0.3秒後に元の背景画像に戻す
-            setTimeout(() => {
-                document.body.style.backgroundImage = 'url(background1.jpg)';
-            }, 500); // 300ms = 0.3秒
-
-            // 次回の変更時間をランダムに設定（1秒から5秒の間）
-            const randomTime = Math.floor(Math.random() * 6000) + 26000; // 1000ms (1秒) から 5000ms (5秒) の間
-            setTimeout(changeBackground, randomTime); // 次回の画像変更を設定
-        }
-
-        // 最初の背景変更を呼び出し
-        changeBackground();
 </script>
 
 </body>
