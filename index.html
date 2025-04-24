@@ -282,6 +282,126 @@
     document.getElementById("warning-screen").style.display = "none";
     document.getElementById("main-content").style.display = "block";
   }
+   const glitchChars = '諱辟｡莠九↓謚懊￠蜃ｺ縺帙ｋ縺ｧ縺励ｇ縺°窶ｦ?諱先?悶→鬩壹″縺悟ｾ■蜿励￠繧蝨ｰ迯霑ｷ螳ｮ縺ｧ縲√≠縺ｪ縺溘?蜍?ｰ励′隧ｦ縺輔ｌ縺ｾ縺吶?譛ｬ迚ｩ縺ｮ髴翫′蜃ｺ繧九→縺?≧繧ｦ繝ｯ繧ｵ繧やｦ菫｡縺倥ｋ縺倶ｿ｡縺倥↑縺?°縺ｯ縲√≠縺ｪ縺滓ｬ｡隨ｬ縲阮?囓縺?ｻ贋ｸ九?縺ｩ縺薙°繧峨°閨槭％縺医ｋ縺吶☆繧頑ｳ｣縺阪縺ゅ↑縺溘′譛蠕後↓逶ｮ謦☆繧九縺ｯ窶ｦ窶ｦ縲';
+
+  function animateGlitchText(el, finalText, typingSpeed = 50, fixSpeed = 40) {
+    const chars = finalText.split('');
+    let display = [];
+    let i = 0;
+
+    const glitchInterval = setInterval(() => {
+      if (i < chars.length) {
+        const c = chars[i];
+        display.push(c === ' ' ? ' ' : glitchChars[Math.floor(Math.random() * glitchChars.length)]);
+        el.textContent = display.join('');
+        i++;
+      } else {
+        clearInterval(glitchInterval);
+        let j = 0;
+        const fixInterval = setInterval(() => {
+          if (j < chars.length) {
+            if (chars[j] !== ' ') display[j] = chars[j];
+            el.textContent = display.join('');
+            j++;
+          } else {
+            clearInterval(fixInterval);
+            setRandomGlitch(el, finalText);
+          }
+        }, fixSpeed);
+      }
+    }, typingSpeed);
+  }
+
+  function setRandomGlitch(el, text) {
+    setInterval(() => {
+      const chars = text.split('');
+      const glitched = chars.map(c => {
+        if (Math.random() < 0.08 && c !== ' ') {
+          return glitchChars[Math.floor(Math.random() * glitchChars.length)];
+        }
+        return c;
+      });
+      el.textContent = glitched.join('');
+      setTimeout(() => {
+        el.textContent = text;
+      }, 120);
+    }, 3000);
+  }
+
+  function showMain() {
+    document.getElementById('warning-screen').style.display = 'none';
+    const main = document.getElementById('main-content');
+    main.style.display = 'block';
+
+    document.querySelectorAll('.glitch').forEach((el, index) => {
+      const text = el.getAttribute('data-text');
+      setTimeout(() => {
+        animateGlitchText(el, text, 40, 40);
+      }, index * 600);
+    });
+  }
+
+
+      // オーバーレイを作成する
+        const overlay = document.createElement('div');
+        overlay.classList.add('overlay');
+        document.body.appendChild(overlay);
+
+
+  // 🔴 恐怖ワードの出現ロジック
+// 恐怖画像のリスト（必要な画像ファイル名に変えてOK）
+const horrorImages = ['nc266400_血痕02質感あり【フリー素材あそび】.png','nc197747_赤い手形【ホラー09】.png']; // 画像ファイル名を入れてね
+
+// 恐怖画像を表示する処理
+setInterval(() => {
+  const flashImage = document.getElementById('flash-image');
+  const randomSrc = horrorImages[Math.floor(Math.random() * horrorImages.length)];
+  flashImage.src = randomSrc;
+
+  // 画面の四隅からランダムに配置
+  
+
+  flashImage.style.left = `${randomX}px`;
+  flashImage.style.top = `${randomY}px`;
+
+  flashImage.style.display = 'block';
+
+  setTimeout(() => {
+    flashImage.style.display = 'none';
+  }, 450); // 0.3秒だけ表示
+}, 8000);
+
+
+
+          // 画像のリストを作成（メイン背景以外）
+        const images = [
+            'background2.jpg',
+            'background3.jpg',
+            'background4.jpg'
+        ];
+
+        let currentIndex = 0;
+
+        // 背景画像を変更する関数
+        function changeBackground() {
+            // ランダムに1つの画像を選択
+            const randomImage = images[Math.floor(Math.random() * images.length)];
+
+            // ランダムな画像を0.3秒間だけ表示
+            document.body.style.backgroundImage = `url(${randomImage})`;
+
+            // 0.3秒後に元の背景画像に戻す
+            setTimeout(() => {
+                document.body.style.backgroundImage = 'url(background1.jpg)';
+            }, 500); // 300ms = 0.3秒
+
+            // 次回の変更時間をランダムに設定（1秒から5秒の間）
+            const randomTime = Math.floor(Math.random() * 6000) + 26000; // 1000ms (1秒) から 5000ms (5秒) の間
+            setTimeout(changeBackground, randomTime); // 次回の画像変更を設定
+        }
+
+        // 最初の背景変更を呼び出し
+        changeBackground();
 </script>
 
 </body>
