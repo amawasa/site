@@ -386,6 +386,26 @@ setInterval(() => {
             // ランダムな画像を0.3秒間だけ表示
             document.body.style.backgroundImage = `url(${randomImage})`;
 
+
+
+
+          // 画像のリストを作成（メイン背景以外）
+        const images = [
+            'background2.jpg',
+            'background3.jpg',
+            'background4.jpg'
+        ];
+
+        let currentIndex = 0;
+
+        // 背景画像を変更する関数
+        function changeBackground() {
+            // ランダムに1つの画像を選択
+            const randomImage = images[Math.floor(Math.random() * images.length)];
+
+            // ランダムな画像を0.3秒間だけ表示
+            document.body.style.backgroundImage = `url(${randomImage})`;
+
             // 0.3秒後に元の背景画像に戻す
             setTimeout(() => {
                 document.body.style.backgroundImage = 'url(background1.jpg)';
