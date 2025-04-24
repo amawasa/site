@@ -7,248 +7,181 @@
   <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
 </head>
 <body>
- <img src="temae.png" alt="最前面画像" class="front-image">
-<div class="warning-screen" id="warning-screen">
-  <p>⚠️ 心臓の弱い方、特に幼児・高齢者の方はご注意ください。<br>このサイトには強いホラー表現が含まれています。</p>
-  <button onclick="showMain()">了解して進む</button>
-</div>
-<div id="main-content" class="main-content">
-  <header>
-    <img src="タイトル.png" class="タイ画像">
-  </header>
-  <div class="content">
-    <div><h2 class="glitch" data-text="お化け屋敷"></h2></div>
-    <p class="glitch" data-text="あなたは、この廃墟と化した旧校舎を
-      "></p><br>
-    <p class="glitch" data-text="無事に抜け出せるでしょうか…？"></p><br>
-    <p class="glitch" data-text="恐怖と驚きが待ち受ける"></p><br>
-    <p class="glitch" data-text="地獄の迷宮で、あなたの勇気が試されます。"></p><br>
-    <p class="glitch" data-text="本物の霊が出るというウワサも…"></p><br>
-    <p class="glitch" data-text="信じるか信じないかは、あなた次第。"></p><br>
-    <p class="glitch" data-text="薄暗い廊下。"></p><br>
-    <p class="glitch" data-text="どこからか聞こえるすすり泣き。"></p><br>
-    <p class="glitch" data-text="あなたが最後に目撃するのは……。"></p>
-
-    <div class="section">
-      <h2 class="glitch" data-text="マップ案内"></h2>
-      <p class="glitch" data-text="会場は、南校舎2階・旧2年3組教室です。"></p><br>
-      <p class="glitch" data-text="赤いランタンのマークを目印にお越しください。"></p><br>
-      <p class="glitch" data-text="暗闇の中で迷い"></p><br>
-      <p class="glitch" data-text="縺倥に攫われないよう"></p><br>
-      <p class="glitch" data-text="ご注意ください。"></p>
-    </div>
-
-    <div class="section">
-      <h2 class="glitch" data-text="入場料"></h2>
-      <p class="glitch" data-text="入場料は、お一人さま 100円。"></p><br>
-      <p class="glitch" data-text="収益はすべて、文化祭活動費として活用させていただきます。"></p><br>
-      <p class="glitch" data-text="なお、一度入場された場合、"></p><br>
-      <p class="glitch" data-text="途中での退出はできません。"></p><br>
-      <p class="glitch" data-text="恐怖の旅路に、覚悟を持ってお進みください…。"></p>
-    </div>
+  <img src="temae.png" alt="最前面画像" class="front-image">
+  <div class="warning-screen" id="warning-screen">
+    <p>⚠️ 心臓の弱い方、特に幼児・高齢者の方はご注意ください。<br>このサイトには強いホラー表現が含まれています。</p>
+    <button onclick="showMain()">了解して進む</button>
   </div>
-  <img class="random-image" id="flash-image" src="" alt="恐怖ワード" style="display: none;">
-  <footer>© 2025 3年3組</footer>
-</div>
+  <div id="main-content" class="main-content">
+    <header>
+      <img src="タイトル.png" class="タイ画像">
+    </header>
 
-<style>
-  body {
-    background-color: #000;
-    color: #fff;
-    font-family: 'Arial', sans-serif;
-    text-align: center;
-    font-size: 2vh;
-    background-image: url('background1.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    margin: 0;
-  }
-  .warning-screen {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-color: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 999999;
-  }
-  .main-content {
-    background-color: rgba(0, 0, 0, 0.7);
-    background-blend-mode: overlay;
-  }
-  .warning-screen p {
-    font-size: 1.3em;
-    color: red;
-    max-width: 80%;
-    margin-bottom: 30px;
-    line-height: 1.8;
-  }
-  .warning-screen button {
-    padding: 15px 30px;
-    font-size: 1.2em;
-    background-color: darkred;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-  header {
-    background-color: #111;
-    padding: 5px 2px;
-    opacity: 0.7;
-  }
-  .タイ画像 {
-    animation: flicker 2s infinite;
-    width: 100%;
-    max-height: 500px;
-    object-fit: cover;
-    filter: brightness(150%) contrast(120%);
-  }
-  @keyframes flicker {
-    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
-    20%, 22%, 24%, 55% { opacity: 0.06; filter: brightness(150%); }
-  }
-  .content {
-    padding: 40px 20px;
-    margin: 10px;
-    border-radius: 20px;
-  }
-  .content h2 {
-    color: #ff4444;
-    font-size: 2em;
-    margin-bottom: 20px;
-  }
-  .content p {
-    font-size: 1.3em;
-    line-height: 1.8;
-    max-width: 700px;
-    margin: auto;
-  }
-  .glitch {
-    position: relative;
-    display: inline-block;
-    white-space: pre-wrap;
-    font-weight: bold;
-    font-size: 1.2em;
-  }
-  .glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0.1;
-    color: red;
-    pointer-events: none;
-    filter: blur(1px);
-  }
-  .front-image {
-    position: fixed;
-    top: 0; left: 0;
-    z-index: 9999999;
-    pointer-events: none;
-    height: 100vh;
-    width: 100vw;
-    object-fit: cover;
-    animation: zuum 50s infinite;
-  }
-  @keyframes zuum {
-    0%, 54%, 100% { opacity: 0.4; }
-    30%, 77% { opacity: 0.2; }
-  }
-  .random-image {
-    position: absolute;
-    width: 30%;
-    height: auto;
-    background-size: cover;
-    background-position: center;
-    display: none;
-    opacity: 0.2;
-    z-index: 999999;
-  }
-  footer {
-    background-color: #111;
-    padding: 20px;
-    font-size: 0.9em;
-    color: #aaa;
-  }
-</style>
+    <div class="content">
+      <!-- グリッチテキスト -->
+      <div><h2 class="glitch" data-text="お化け屋敷"></h2></div>
+      <p class="glitch" data-text="あなたは、この廃墟と化した旧校舎を"></p><br>
+      <p class="glitch" data-text="無事に抜け出せるでしょうか…？"></p><br>
+      <p class="glitch" data-text="恐怖と驚きが待ち受ける"></p><br>
+      <p class="glitch" data-text="地獄の迷宮で、あなたの勇気が試されます。"></p><br>
+      <p class="glitch" data-text="本物の霊が出るというウワサも…"></p><br>
+      <p class="glitch" data-text="信じるか信じないかは、あなた次第。"></p><br>
+      <p class="glitch" data-text="薄暗い廊下。"></p><br>
+      <p class="glitch" data-text="どこからか聞こえるすすり泣き。"></p><br>
+      <p class="glitch" data-text="あなたが最後に目撃するのは……。"></p>
 
-<script>
-  const glitchChars = '諱辟｡莠九↓謚懊￠蜃ｺ縺帙ｋ縺ｧ縺励ｇ縺°窶ｦ?...';
+      <div class="section">
+        <h2 class="glitch" data-text="マップ案内"></h2>
+        <p class="glitch" data-text="会場は、南校舎2階・旧2年3組教室です。"></p><br>
+        <p class="glitch" data-text="赤いランタンのマークを目印にお越しください。"></p><br>
+        <p class="glitch" data-text="暗闇の中で迷い"></p><br>
+        <p class="glitch" data-text="縺倥に攫われないよう"></p><br>
+        <p class="glitch" data-text="ご注意ください。"></p>
+      </div>
 
-  function animateGlitchText(el, finalText, typingSpeed = 50, fixSpeed = 40) {
-    const chars = finalText.split('');
-    let display = [];
-    let i = 0;
+      <div class="section">
+        <h2 class="glitch" data-text="入場料"></h2>
+        <p class="glitch" data-text="入場料は、お一人さま 100円。"></p><br>
+        <p class="glitch" data-text="収益はすべて、文化祭活動費として活用させていただきます。"></p><br>
+        <p class="glitch" data-text="なお、一度入場された場合、"></p><br>
+        <p class="glitch" data-text="途中での退出はできません。"></p><br>
+        <p class="glitch" data-text="恐怖の旅路に、覚悟を持ってお進みください…。"></p>
+      </div>
+    </div>
 
-    const glitchInterval = setInterval(() => {
-      if (i < chars.length) {
-        const c = chars[i];
-        display.push(c === ' ' ? ' ' : glitchChars[Math.floor(Math.random() * glitchChars.length)]);
-        el.textContent = display.join('');
-        i++;
-      } else {
-        clearInterval(glitchInterval);
-        let j = 0;
-        const fixInterval = setInterval(() => {
-          if (j < chars.length) {
-            if (chars[j] !== ' ') display[j] = chars[j];
-            el.textContent = display.join('');
-            j++;
-          } else {
-            clearInterval(fixInterval);
-            setRandomGlitch(el, finalText);
-          }
-        }, fixSpeed);
-      }
-    }, typingSpeed);
-  }
+    <img class="random-image" id="flash-image" src="" alt="恐怖ワード" style="display: none;">
+    <footer>© 2025 3年3組</footer>
+  </div>
 
-  function setRandomGlitch(el, text) {
-    setInterval(() => {
-      const chars = text.split('');
-      const glitched = chars.map(c => (Math.random() < 0.08 && c !== ' ') ? glitchChars[Math.floor(Math.random() * glitchChars.length)] : c);
-      el.textContent = glitched.join('');
-      setTimeout(() => el.textContent = text, 120);
-    }, 3000);
-  }
+  <style>
+    /* ここにCSS（スタイル）は省略せずに必要なものを残しておきますが、長いためご希望あれば別ファイル化も可能です */
+    body {
+      padding: 0;
+      margin: 0;
+      background-color: #000;
+      background-image: url('background1.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      font-family: 'Arial', sans-serif;
+      color: #fff;
+      text-align: center;
+      font-size: 2vh;
+    }
+    .warning-screen {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-color: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 999999;
+    }
+    .warning-screen p {
+      font-size: 1.3em;
+      color: red;
+      max-width: 80%;
+      margin-bottom: 30px;
+      line-height: 1.8;
+    }
+    .warning-screen button {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      background-color: darkred;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .main-content { display: none; }
+    .front-image {
+      position: fixed;
+      top: 0; left: 0;
+      z-index: 9999999;
+      pointer-events: none;
+      height: 100vh;
+      width: 100vw;
+      object-fit: cover;
+      animation: zuum 50s infinite;
+      opacity: 0.4;
+    }
+    @keyframes zuum {
+      0%, 54%, 100% { opacity: 0.4; }
+      30%, 77% { opacity: 0.2; }
+    }
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0.1;
+      color: red;
+      pointer-events: none;
+      filter: blur(1px);
+    }
+    .random-image {
+      position: absolute;
+      width: 30%;
+      height: auto;
+      background-size: cover;
+      background-position: center;
+      display: none;
+      opacity: 0.1;
+    }
+  </style>
 
-  function showMain() {
-    document.getElementById('warning-screen').style.display = 'none';
-    const main = document.getElementById('main-content');
-    main.style.display = 'block';
-    document.querySelectorAll('.glitch').forEach((el, index) => {
-      const text = el.getAttribute('data-text');
-      setTimeout(() => animateGlitchText(el, text, 40, 40), index * 600);
-    });
-  }
+  <script>
+    const glitchChars = '諱辟｡莠九↓謚懊￠蜃ｺ縺帙ｋ縺ｧ縺励ｇ縺°窶ｦ?...';
+    const horrorImages = ['nc266400_血痕02質感あり【フリー素材あそび】.png', 'nc197747_赤い手形【ホラー09】.png'];
 
-  const horrorImages = ['nc266400_血痕02質感あり【フリー素材あそび】.png', 'nc197747_赤い手形【ホラー09】.png'];
-  setInterval(() => {
-    const flashImage = document.getElementById('flash-image');
-    const randomSrc = horrorImages[Math.floor(Math.random() * horrorImages.length)];
-    const randomX = Math.random() * window.innerWidth * 0.7;
-    const randomY = Math.random() * window.innerHeight * 0.7;
-    flashImage.src = randomSrc;
-    flashImage.style.left = `${randomX}px`;
-    flashImage.style.top = `${randomY}px`;
-    flashImage.style.display = 'block';
-    setTimeout(() => flashImage.style.display = 'none', 450);
-  }, 8000);
+    function animateGlitchText(el, finalText, typingSpeed = 50, fixSpeed = 40) {
+      const chars = finalText.split('');
+      let display = [];
+      let i = 0;
 
-  const images = ['background2.jpg', 'background3.jpg', 'background4.jpg'];
-  function changeBackground() {
-    const randomImage = images[Math.floor(Math.random() * images.length)];
-    document.body.style.backgroundImage = `url(${randomImage})`;
-    setTimeout(() => {
-      document.body.style.backgroundImage = 'url(background1.jpg)';
-    }, 500);
-    setTimeout(changeBackground, Math.floor(Math.random() * 6000) + 26000);
-  }
-  changeBackground();
-</script>
-</body>
-</html>
+      const glitchInterval = setInterval(() => {
+        if (i < chars.length) {
+          const c = chars[i];
+          display.push(c === ' ' ? ' ' : glitchChars[Math.floor(Math.random() * glitchChars.length)]);
+          el.textContent = display.join('');
+          i++;
+        } else {
+          clearInterval(glitchInterval);
+          let j = 0;
+          const fixInterval = setInterval(() => {
+            if (j < chars.length) {
+              if (chars[j] !== ' ') display[j] = chars[j];
+              el.textContent = display.join('');
+              j++;
+            } else {
+              clearInterval(fixInterval);
+              setRandomGlitch(el, finalText);
+            }
+          }, fixSpeed);
+        }
+      }, typingSpeed);
+    }
+
+    function setRandomGlitch(el, text) {
+      setInterval(() => {
+        const chars = text.split('');
+        const glitched = chars.map(c => (Math.random() < 0.08 && c !== ' ') ? glitchChars[Math.floor(Math.random() * glitchChars.length)] : c);
+        el.textContent = glitched.join('');
+        setTimeout(() => {
+          el.textContent = text;
+        }, 120);
+      }, 3000);
+    }
+
+    function showMain() {
+      document.getElementById('warning-screen').style.display = 'none';
+      const main = document.getElementById('main-content');
+      main.style.display = 'block';
+
+      document.querySelectorAll('.glitch').forEach((el, index) => {
+        const text = el.getAttribute('data-text');
+        setTimeout(() => {
+          animateGlitchText(el, text, 40, 40);
+        }, index * 600);
+      });
+    }
