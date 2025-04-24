@@ -5,21 +5,138 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>文化祭お化け屋敷</title>
   <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #000;
-      color: #fff;
-      font-family: 'Arial', sans-serif;
-      text-align: center;
-      font-size: 2vh;
-      background-image: url('background1.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-    }
+  
+</head>
+<body>
+ <img src="temae.png" alt="最前面画像" class="front-image">
+<div class="warning-screen" id="warning-screen">
+  <p>⚠️ 心臓の弱い方、特に幼児・高齢者の方はご注意ください。<br>このサイトには強いホラー表現が含まれています。</p>
+  <button onclick="showMain()">了解して進む</button>
+</div>
+<div id="main-content" class="main-content">
+  <header>
+    <img src="タイトル.png" class="タイ画像">
+     </header>
+
+  <div class="content">
+    <div>
+    <h2 class="glitch" data-text="お化け屋敷"></h2>
+    </div>
+    <p class="glitch" data-text="あなたは、この廃墟と化した旧校舎を
+      ">
+    </p><br>
+    <p class="glitch" data-text="無事に抜け出せるでしょうか…？
+      ">
+    </p>
+    <br>
+    <p class="glitch" data-text="恐怖と驚きが待ち受ける
+      ">
+    </p>
+    <br>
+    <p class="glitch" data-text="地獄の迷宮で、あなたの勇気が試されます。
+      ">
+    </p>
+    <br>
+    <p class="glitch" data-text="本物の霊が出るというウワサも…
+      ">
+    </p>
+   <br>
+    <p class="glitch" data-text="信じるか信じないかは、あなた次第。
+      ">
+    </p>
+   <br>
+    <p class="glitch" data-text="薄暗い廊下。
+      ">
+    </p>
+    <br>
+    <p class="glitch" data-text="どこからか聞こえるすすり泣き。
+      ">
+    </p>
+    <br>
+    <p class="glitch" data-text="あなたが最後に目撃するのは……。
+      ">
+    </p>
+    <div class="section">
+      <div>
+      <h2 class="glitch" data-text="マップ案内"></h2>
+      </div>
+      <p class="glitch" data-text="会場は、南校舎2階・旧2年3組教室です。
+        ">
+      </p><br>
+
+    <p class="glitch" data-text="赤いランタンのマークを目印にお越しください。
+      ">
+    </p><br>
+    <p class="glitch" data-text="暗闇の中で迷い
+      ">
+    </p>
+    <br>
+    <p class="glitch" data-text="縺倥に攫われないよう
+      ">
+    </p>
+    <br>
+    <p class="glitch" data-text="ご注意ください。
+      ">    </div>
+
+    <div class="section">
+      <div>
+      <h2 class="glitch" data-text="入場料"></h2>
+      </div>
+      <p class="glitch" data-text="入場料は、お一人さま 100円。
+        ">
+        </p><br>
+    <p class="glitch" data-text="収益はすべて、文化祭活動費と
+      ">
+    </p>
+    <br>
+    <p class="glitch" data-text="して活用させていただきます。
+      ">
+    </p>
+    <br>
+    <p class="glitch" data-text="なお、一度入場された場合、
+      ">
+    </p>
+    <br>
+    <p class="glitch" data-text="途中での退出はできません。
+      ">
+    </p>
+   <br>
+    <p class="glitch" data-text="恐怖の旅路に、覚悟を持ってお進みください…。
+      ">
+    </p>
+   <br>
+    
+      
+    </div>
+  </div>
+<img class="random-image" id="flash-image" src="" alt="恐怖ワード" style="display: none;">
+  <footer>
+    © 2025 3年3組
+  </footer>
+</div>
+
+<!-- 🔴 恐怖ワードの一瞬表示 -->
+<style>
+  body {
+  padding: 0;
+  background-color: #000;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  font-size: 1.5rem; /* スマホ用のフォントサイズ */
+  background-image: url('background1.jpg'); /* メインの背景画像 */
+  background-size: cover; /* 画像が画面全体にカバーされる */
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0;
+  background-attachment: fixed;
+  transition: background-image 0.3s ease-in-out;
+  }
+  body{
+       font-size: 2vh;
+  }
+
+
     .warning-screen {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -29,7 +146,16 @@
       justify-content: center;
       align-items: center;
       z-index: 999999;
+        background-color: black;
     }
+
+
+    .main-content{
+      background-color: rgba(#000, 0.7);
+    background-blend-mode: overlay;
+
+    }
+
     .warning-screen p {
       font-size: 1.3em;
       color: red;
@@ -37,6 +163,7 @@
       margin-bottom: 30px;
       line-height: 1.8;
     }
+
     .warning-screen button {
       padding: 15px 30px;
       font-size: 1.2em;
@@ -46,27 +173,39 @@
       border-radius: 10px;
       cursor: pointer;
     }
+
     #main-content {
       display: none;
       animation: fadeIn 2s ease-in-out forwards;
+      margin: 0;
     }
+
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
+
     header {
       background-color: #111;
       padding: 5px 2px;
       opacity: 0.7;
     }
+
     .タイ画像 {
       animation: flicker 2s infinite;
-      width: 100%;
-      object-fit: cover;
-      max-height: 400px;
+    max-height: 300px;
+    width: 100%;
+   object-fit: cover; /* 画像の縦横比を保ちながら、枠に収める */
+   min-height: 100px; /* 最低高さを設定 */ 
+   max-height: 500px;
+      filter: brightness(150%) contrast(120%);
+      filter: brightness(150%); /* 画像を明るくする */
+
+
     }
+
     @keyframes flicker {
-      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+     0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
         opacity: 1;
       }
       20%, 22%, 24%, 55% {
@@ -74,25 +213,43 @@
         filter: brightness(150%);
       }
     }
+
+    .content {
+      padding: 40px 20px;
+      margin: 30px;
+      border-radius: 20px;
+      padding: 20px;
+     margin: 10px;
+    }
+
     .content h2 {
       color: #ff4444;
       font-size: 2em;
-      margin: 40px 0 20px;
+      margin-bottom: 20px;
     }
+
     .content p {
       font-size: 1.3em;
       line-height: 1.8;
       max-width: 700px;
       margin: auto;
-      margin-bottom: 10px;
     }
+
+    footer {
+      background-color: #111;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #aaa;
+    }
+
     .glitch {
       display: inline-block;
       position: relative;
       white-space: pre-wrap;
       font-weight: bold;
-      font-size: 1.2em;
+          font-size: 1.2em;
     }
+
     .glitch::after {
       content: attr(data-text);
       position: absolute;
@@ -103,142 +260,208 @@
       pointer-events: none;
       filter: blur(1px);
     }
+
+    .flash {
+      animation: flashAnim 0.2s;
+    }
     .front-image {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 9999999;
-      pointer-events: none;
-      height: 100vh;
-      width: 100vw;
-      object-fit: cover;
-      animation: zuum 50s infinite;
+    position: fixed; /* スクロールしても動かない */
+    top: 0;
+    left: 0;
+    z-index: 9999999; /* 最前面に表示 */
+    pointer-events: none; /* 当たり判定なし（クリックを無視） */  /* ビューポート幅100% */
+    height: 100vh; /* ビューポート高さ100% */
+     width: 100vw; /* 幅も確保してみる */
+    object-fit: cover; /* 画面にフィットさせる */
+    animation: zuum 50s infinite;
     }
+
     @keyframes zuum {
-      0%, 54%, 100% { opacity: 0.4; }
-      30%, 77% { opacity: 0.2; }
+            0%, 54%, 100% {
+        opacity: 0.4;
+      }
+            30%, 77% {
+        opacity: 0.2;
+      }
     }
-    .random-image {
-      position: absolute;
-      width: 25%;
-      height: auto;
-      background-size: cover;
-      background-position: center;
-      display: none;
-      opacity: 0.1;
-      z-index: 99999;
+
+    @keyframes flashAnim {
+      0% { background-color: #f00; }
+      100% { background-color: #000; }
     }
-    footer {
-      background-color: #111;
-      padding: 20px;
-      font-size: 0.9em;
-      color: #aaa;
+
+    .shake {
+      animation: shakeAnim 0.4s ease-in-out;
     }
+
+    @keyframes shakeAnim {
+      0% { transform: translate(0px, 0px); }
+      20% { transform: translate(-5px, 5px); }
+      40% { transform: translate(5px, -5px); }
+      60% { transform: translate(-5px, 5px); }
+      80% { transform: translate(5px, -5px); }
+      100% { transform: translate(0px, 0px); }
+    }
+    .warning-image {
+  max-width: 80%;
+  height: auto;
+  margin-bottom: 30px;
+  filter: drop-shadow(0 0 10px red);
+  opacity: 0.1;
+ }
+
+
+
+    #pupil {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: black;
+      position: relative;
+    }
+
+    /* 恐怖ワード */
+.random-image {
+  position: absolute; /* 画像の位置を絶対に設定 */
+  width: 30%; /* 画像のサイズ */
+  height: auto;
+  background-image: url('image.png'); /* 画像のURLを指定 */
+  background-size: cover;
+  background-position: center;
+  display: none; /* 初期状態では非表示 */
+  opacity: 0.1;
+}
   </style>
-</head>
-<body>
-  <img src="temae.png" alt="最前面画像" class="front-image">
-  <div class="warning-screen" id="warning-screen">
-    <p>⚠️ 心臓の弱い方、特に幼児・高齢者の方はご注意ください。<br>このサイトには強いホラー表現が含まれています。</p>
-    <button onclick="showMain()">了解して進む</button>
-  </div>
 
-  <div id="main-content">
-    <header>
-      <img src="タイトル.png" class="タイ画像">
-    </header>
-    <div class="content">
-      <h2 class="glitch" data-text="お化け屋敷"></h2>
-      <p class="glitch" data-text="あなたは、この廃墟と化した旧校舎を"></p>
-      <p class="glitch" data-text="無事に抜け出せるでしょうか…？"></p>
-      <p class="glitch" data-text="恐怖と驚きが待ち受ける"></p>
-      <p class="glitch" data-text="地獄の迷宮で、あなたの勇気が試されます。"></p>
-      <p class="glitch" data-text="本物の霊が出るというウワサも…"></p>
-      <p class="glitch" data-text="信じるか信じないかは、あなた次第。"></p>
-      <p class="glitch" data-text="薄暗い廊下。"></p>
-      <p class="glitch" data-text="どこからか聞こえるすすり泣き。"></p>
-      <p class="glitch" data-text="あなたが最後に目撃するのは……。"></p>
+<script>
+  const glitchChars = '諱辟｡莠九↓謚懊￠蜃ｺ縺帙ｋ縺ｧ縺励ｇ縺°窶ｦ?諱先?悶→鬩壹″縺悟ｾ■蜿励￠繧蝨ｰ迯霑ｷ螳ｮ縺ｧ縲√≠縺ｪ縺溘?蜍?ｰ励′隧ｦ縺輔ｌ縺ｾ縺吶?譛ｬ迚ｩ縺ｮ髴翫′蜃ｺ繧九→縺?≧繧ｦ繝ｯ繧ｵ繧やｦ菫｡縺倥ｋ縺倶ｿ｡縺倥↑縺?°縺ｯ縲√≠縺ｪ縺滓ｬ｡隨ｬ縲阮?囓縺?ｻ贋ｸ九?縺ｩ縺薙°繧峨°閨槭％縺医ｋ縺吶☆繧頑ｳ｣縺阪縺ゅ↑縺溘′譛蠕後↓逶ｮ謦☆繧九縺ｯ窶ｦ窶ｦ縲';
 
-      <h2 class="glitch" data-text="マップ案内"></h2>
-      <p class="glitch" data-text="会場は、南校舎2階・旧2年3組教室です。"></p>
-      <p class="glitch" data-text="赤いランタンのマークを目印にお越しください。"></p>
+  function animateGlitchText(el, finalText, typingSpeed = 50, fixSpeed = 40) {
+    const chars = finalText.split('');
+    let display = [];
+    let i = 0;
 
-      <h2 class="glitch" data-text="入場料"></h2>
-      <p class="glitch" data-text="入場料は、お一人さま 100円。"></p>
-      <p class="glitch" data-text="収益はすべて、文化祭活動費として活用させていただきます。"></p>
-      <p class="glitch" data-text="なお、一度入場された場合、途中での退出はできません。"></p>
-      <p class="glitch" data-text="恐怖の旅路に、覚悟を持ってお進みください…"></p>
-    </div>
-    <img class="random-image" id="flash-image" src="" alt="恐怖画像">
-    <footer>© 2025 3年3組</footer>
-  </div>
+    const glitchInterval = setInterval(() => {
+      if (i < chars.length) {
+        const c = chars[i];
+        display.push(c === ' ' ? ' ' : glitchChars[Math.floor(Math.random() * glitchChars.length)]);
+        el.textContent = display.join('');
+        i++;
+      } else {
+        clearInterval(glitchInterval);
+        let j = 0;
+        const fixInterval = setInterval(() => {
+          if (j < chars.length) {
+            if (chars[j] !== ' ') display[j] = chars[j];
+            el.textContent = display.join('');
+            j++;
+          } else {
+            clearInterval(fixInterval);
+            setRandomGlitch(el, finalText);
+          }
+        }, fixSpeed);
+      }
+    }, typingSpeed);
+  }
 
-  <script>
-    const glitchChars = '諱辟｡莠九↓謚懊￠蜃ｺ縺帙ｋ縺ｧ縺励ｇ縺°窶ｦ';
-
-    function animateGlitchText(el, finalText, typingSpeed = 50, fixSpeed = 40) {
-      const chars = finalText.split('');
-      let display = [];
-      let i = 0;
-
-      const glitchInterval = setInterval(() => {
-        if (i < chars.length) {
-          const c = chars[i];
-          display.push(c === ' ' ? ' ' : glitchChars[Math.floor(Math.random() * glitchChars.length)]);
-          el.textContent = display.join('');
-          i++;
-        } else {
-          clearInterval(glitchInterval);
-          let j = 0;
-          const fixInterval = setInterval(() => {
-            if (j < chars.length) {
-              if (chars[j] !== ' ') display[j] = chars[j];
-              el.textContent = display.join('');
-              j++;
-            } else {
-              clearInterval(fixInterval);
-            }
-          }, fixSpeed);
-        }
-      }, typingSpeed);
-    }
-
-    function showMain() {
-      document.getElementById('warning-screen').style.display = 'none';
-      const main = document.getElementById('main-content');
-      main.style.display = 'block';
-      document.querySelectorAll('.glitch').forEach((el, index) => {
-        const text = el.getAttribute('data-text');
-        setTimeout(() => {
-          animateGlitchText(el, text, 40, 40);
-        }, index * 600);
-      });
-    }
-
-    const horrorImages = ['nc266400_血痕02質感あり【フリー素材あそび】.png', 'nc197747_赤い手形【ホラー09】.png'];
+  function setRandomGlitch(el, text) {
     setInterval(() => {
-      const flashImage = document.getElementById('flash-image');
-      const randomSrc = horrorImages[Math.floor(Math.random() * horrorImages.length)];
-      flashImage.src = randomSrc;
-      flashImage.style.left = `${Math.random() * 70 + 10}%`;
-      flashImage.style.top = `${Math.random() * 70 + 10}%`;
-      flashImage.style.display = 'block';
+      const chars = text.split('');
+      const glitched = chars.map(c => {
+        if (Math.random() < 0.08 && c !== ' ') {
+          return glitchChars[Math.floor(Math.random() * glitchChars.length)];
+        }
+        return c;
+      });
+      el.textContent = glitched.join('');
       setTimeout(() => {
-        flashImage.style.display = 'none';
-      }, 450);
-    }, 8000);
+        el.textContent = text;
+      }, 120);
+    }, 3000);
+  }
 
-    const bgImages = ['background2.jpg', 'background3.jpg', 'background4.jpg'];
-    function changeBackground() {
-      const bg = bgImages[Math.floor(Math.random() * bgImages.length)];
-      document.body.style.backgroundImage = `url(${bg})`;
+  function showMain() {
+    document.getElementById('warning-screen').style.display = 'none';
+    const main = document.getElementById('main-content');
+    main.style.display = 'block';
+
+    document.querySelectorAll('.glitch').forEach((el, index) => {
+      const text = el.getAttribute('data-text');
       setTimeout(() => {
-        document.body.style.backgroundImage = 'url(background1.jpg)';
-      }, 500);
-      setTimeout(changeBackground, Math.floor(Math.random() * 6000) + 26000);
-    }
-    changeBackground();
-  </script>
+        animateGlitchText(el, text, 40, 40);
+      }, index * 600);
+    });
+  }
+
+
+      // オーバーレイを作成する
+        const overlay = document.createElement('div');
+        overlay.classList.add('overlay');
+        document.body.appendChild(overlay);
+  
+  // 🔴 恐怖ワードの出現ロジック
+const horrorImages = [
+  'nc266400_血痕02質感あり【フリー素材あそび】.png',
+  'nc197747_赤い手形【ホラー09】.png'
+];
+
+setInterval(() => {
+  const flashImage = document.getElementById('flash-image');
+  const randomSrc = horrorImages[Math.floor(Math.random() * horrorImages.length)];
+  flashImage.src = randomSrc;
+
+  // 画面のサイズに応じてランダムな位置を計算
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+  const imageWidth = windowWidth * 0.3; // 画像サイズと合わせて30%
+  const randomX = Math.random() * (windowWidth - imageWidth);
+  const randomY = Math.random() * (windowHeight - imageWidth * 0.75); // 高さは画像比に応じて調整
+
+  flashImage.style.left = `${randomX}px`;
+  flashImage.style.top = `${randomY}px`;
+
+  flashImage.style.display = 'block';
+  flashImage.classList.add('flash'); // 点滅アニメーション（任意）
+
+  setTimeout(() => {
+    flashImage.style.display = 'none';
+    flashImage.classList.remove('flash');
+  }, 450); // 0.45秒間表示
+}, 8000);
+
+
+
+
+          // 画像のリストを作成（メイン背景以外）
+        const images = [
+            'background2.jpg',
+            'background3.jpg',
+            'background4.jpg'
+        ];
+
+        let currentIndex = 0;
+
+        // 背景画像を変更する関数
+        function changeBackground() {
+            // ランダムに1つの画像を選択
+            const randomImage = images[Math.floor(Math.random() * images.length)];
+
+            // ランダムな画像を0.3秒間だけ表示
+            document.body.style.backgroundImage = `url(${randomImage})`;
+
+            // 0.3秒後に元の背景画像に戻す
+            setTimeout(() => {
+                document.body.style.backgroundImage = 'url(background1.jpg)';
+            }, 500); // 300ms = 0.3秒
+
+            // 次回の変更時間をランダムに設定（1秒から5秒の間）
+            const randomTime = Math.floor(Math.random() * 6000) + 26000; // 1000ms (1秒) から 5000ms (5秒) の間
+            setTimeout(changeBackground, randomTime); // 次回の画像変更を設定
+        }
+
+        // 最初の背景変更を呼び出し
+        changeBackground();
+</script>
+
 </body>
 </html>
-
