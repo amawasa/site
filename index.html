@@ -349,13 +349,17 @@
 const horrorImages = ['nc266400_血痕02質感あり【フリー素材あそび】.png','nc197747_赤い手形【ホラー09】.png']; // 画像ファイル名を入れてね
 
 // 恐怖画像を表示する処理
+
 setInterval(() => {
   const flashImage = document.getElementById('flash-image');
   const randomSrc = horrorImages[Math.floor(Math.random() * horrorImages.length)];
   flashImage.src = randomSrc;
 
-  // 画面の四隅からランダムに配置
-  
+  // 画面サイズに応じてランダムな位置を設定
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+  const randomX = Math.random() * (windowWidth - flashImage.offsetWidth);
+  const randomY = Math.random() * (windowHeight - flashImage.offsetHeight);
 
   flashImage.style.left = `${randomX}px`;
   flashImage.style.top = `${randomY}px`;
@@ -364,8 +368,27 @@ setInterval(() => {
 
   setTimeout(() => {
     flashImage.style.display = 'none';
-  }, 450); // 0.3秒だけ表示
+  }, 450);
 }, 8000);
+
+
+          // 画像のリストを作成（メイン背景以外）
+        const images = [
+            'background2.jpg',
+            'background3.jpg',
+            'background4.jpg'
+        ];
+
+        let currentIndex = 0;
+
+        // 背景画像を変更する関数
+        function changeBackground() {
+            // ランダムに1つの画像を選択
+            const randomImage = images[Math.floor(Math.random() * images.length)];
+
+            // ランダムな画像を0.3秒間だけ表示
+            document.body.style.backgroundImage = `url(${randomImage})`;
+
 
 
 
