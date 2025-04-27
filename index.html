@@ -15,7 +15,7 @@
   <p>⚠️ 心臓の弱い方、特に幼児・高齢者の方はご注意ください。<br>このサイトには強いホラー表現が含まれています。</p>
   <button onclick="showMain()">了解して進む</button>
 </div>
-<div id="main-content" class="main-content">
+<div id="main-content" class="main-content" class="glitch">
   <header>
     <img src="タイトル.png" class="タイ画像">
      </header>
@@ -55,17 +55,32 @@
     <p class="glitch" data-text="途中での退出はできません。"></p><br><br>
     <p class="glitch" data-text="恐怖の旅路に、覚悟を持ってお進みください…。"></p><br><br>
   </div>
-</div>
+  <button id="scareButton">進む</button>
+    <footer>
+    © 2025 3年3組
+  </footer>
+
+
+
+
 
 
     
       
     </div>
-  </div>
+
+
+    </div>
+<div id="background" class="hidden">
+  <div id="face" class="hidden">
+  <img src="2-3-19-6.png" alt="顔面" />
+</div>
+
+<div id="hand" class="hidden">
+  <img src="23835118.png" alt="手" />
+</div>
+</div>
 <img class="random-image" id="flash-image" src="" alt="恐怖ワード" style="display: none;">
-  <footer>
-    © 2025 3年3組
-  </footer>
 </div>
 
 <!-- 🔴 恐怖ワードの一瞬表示 -->
@@ -87,6 +102,14 @@
   body{
        font-size: 2vh;
   }
+  body {
+  font-family: "MyHorrorFont", sans-serif; /* 使いたい場所で指定！ */
+}
+
+@font-face {
+  font-family: "MyHorrorFont"; /* 好きな名前でOK */
+  src: url("onryou.TTF") format("truetype");
+}
 
 
     .warning-screen {
@@ -103,7 +126,7 @@
 
 
     .main-content{
-      background-color: rgba(#000, 0.7);
+      background-color: rgba(0,0,0,0.7);
     background-blend-mode: overlay;
 
     }
@@ -200,7 +223,7 @@
       white-space: pre-wrap;
       font-weight: bold;
       font-size: 1.2em;
-      font-family: 'Creepster', cursive;
+      font-family: 'MyHorrorFont', cursive;
     }
 
     .glitch::after {
@@ -212,7 +235,7 @@
       color: red;
       pointer-events: none;
       filter: blur(1px);
-　　　　font-family: 'Creepster', cursive;
+　　　　font-family: 'MyHorrorFont', cursive;
     }
 
     .flash {
@@ -285,6 +308,69 @@
   display: none; /* 初期状態では非表示 */
   opacity: 0.1;
 }
+.hidden {
+  display: none;
+}
+#face img, #hand img {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1000;
+  width: 100vh;
+  height: auto; /* 高さも画面いっぱいに */ /* 縦横比を保ちながら画面いっぱいに表示 */
+  opacity: 0.99;
+    mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+}
+ 
+
+ #face img {
+  animation: flicker 2s infinite;
+}
+
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+  }
+  20%, 22%, 24%, 55% {
+    opacity: 0.06;
+    filter: brightness(150%);
+  }
+}
+
+#background {
+  background-color: black;
+  position: fixed;
+  z-index: 10;
+  top: 0; /* 上部に配置 */
+  left: 0; /* 左端に配置 */
+  width: 100vw; /* ビューポートの幅 */
+  height: 100vh; /* ビューポートの高さ */
+  object-fit: cover; /* 画面全体に背景を表示 */
+}
+
+
+@keyframes faceZoom {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.3);
+  }
+}
+
+@keyframes handDrop {
+  0% {
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    transform: translate(-50%, 0%);
+  }
+}
+
   </style>
 
 <script>
@@ -382,6 +468,30 @@ setInterval(() => {
     flashImage.classList.remove('flash');
   }, 450); // 0.45秒間表示
 }, 8000);
+
+document.getElementById('scareButton').addEventListener('click', function() {
+  // glitch要素を消す
+  document.querySelectorAll('.main-content').forEach(elem => {
+    elem.style.display = 'none';
+  });
+
+  // 顔と手を表示
+  const face = document.getElementById('face');
+  const hand = document.getElementById('hand');
+  const background = document.getElementById('background');
+
+  face.classList.remove('hidden');
+  
+background.classList.remove('hidden');
+  hand.classList.remove('hidden');
+
+  // 顔を拡大アニメーション
+  face.querySelector('img').style.animation = 'faceZoom 2s forwards';
+
+  // 手を下降アニメーション
+  hand.querySelector('img').style.animation = 'handDrop 2s forwards';
+});
+
 
 
 
