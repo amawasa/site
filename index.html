@@ -11,13 +11,13 @@
 </head>
 <body>
  <img src="temae.png" alt="最前面画像" class="front-image">
-<div class="warning-screen" id="warning-screen" data-text="⚠️ 心臓の弱い方、特に幼児・高齢者の方はご注意ください。">
+<div class="warning-screen" id="warning-screen" data-text="* 心臓の弱い方、特に幼児・高齢者の方はご注意ください。">
   <p>loding now,pleas wait.</p>
   <button onclick="showMain()">了解して進む</button>
 </div>
 <div id="main-content" class="main-content" class="glitch">
   <header>
-    <img src="タイトル.png" class="タイ画像">
+    <img src="タイトル.png" class="titleimg">
      </header>
 <div class="content">
   <div>
@@ -168,7 +168,7 @@
       opacity: 0.7;
     }
 
-    .タイ画像 {
+    .titleimg {
       animation: flicker 2s infinite;
     max-height: 300px;
     width: 100%;
@@ -307,7 +307,7 @@
   background-size: cover;
   background-position: center;
   display: none; /* 初期状態では非表示 */
-  opacity: 0.1;
+  opacity: 0.7;
 }
 .hidden {
   display: none;
@@ -467,8 +467,8 @@ setInterval(() => {
   setTimeout(() => {
     flashImage.style.display = 'none';
     flashImage.classList.remove('flash');
-  }, 450); // 0.45秒間表示
-}, 8000);
+  }, 750); // 0.45秒間表示
+}, 3000);
 
 document.getElementById('scareButton').addEventListener('click', function() {
   // glitch要素を消す
