@@ -436,14 +436,14 @@
       }, index * 600);
     });
   }//終わり
-  
+
 const elements = document.querySelectorAll('.loading');
 
 function typeOneByOne(index = 0) {
   if (index >= elements.length) return; // 全部終わったら終了
-  el.textContent ='';
 
   const el = elements[index]; // 今処理する要素
+  el.textContent = ''; // 最初にテキストを空にしておく
   const text = el.getAttribute('data-text'); // 表示したい文字列を取得
   const chars = text.split(''); // 1文字ずつに分ける
   let display = []; // 表示する文字をためていく配列
@@ -466,9 +466,6 @@ function typeOneByOne(index = 0) {
 typeOneByOne(); // 最初の要素からスタート
 
   
-
-  
-
 
 
       // オーバーレイを作成する
