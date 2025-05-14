@@ -11,8 +11,9 @@
 </head>
 <body>
  <img src="temae.png" alt="最前面画像" class="front-image">
-<div class="warning-screen" id="warning-screen" data-text="* 心臓の弱い方、特に幼児・高齢者の方はご注意ください。">
-  <p>loding now,pleas wait.</p>
+<div class="warning-screen" id="warning-screen">
+  <p class="loading" data-text="* 心臓の弱い方、特に幼児・高齢者の方はご注意ください。">loding now,pleas wait.</p><br>
+  <p class="loading" data-text="* このサイトで起こる事柄に一切の責任を負いません"></p>
   <button onclick="showMain()">了解して進む</button>
 </div>
 <div id="main-content" class="main-content" class="glitch">
@@ -217,7 +218,9 @@
       color: #aaa;
       margin: 0;
     }
-
+  .loading::after {
+    content: attr(data-text);
+  }
     .glitch {
       display: inline-block;
       position: relative;
@@ -432,7 +435,28 @@
         animateGlitchText(el, text, 40, 40);
       }, index * 600);
     });
-  }
+  }//終わり
+
+  const elements = document.querySelectorAll('.loading');
+  function next() {
+  // 1つずつ処理
+}
+  elements.forEach(el => {
+  let display = [];
+const text = el.getAttribute('data-text')
+const chars = text.split(''); // ['H', 'E', 'L', 'L', 'O']
+  
+chars.forEach((c, i) => {
+  setTimeout(() => {
+    display.push(c);
+    console.log(display.join('')); // H → HE → HEL → ...
+  }, i * 100);
+});
+  });
+
+
+  
+
 
 
       // オーバーレイを作成する
