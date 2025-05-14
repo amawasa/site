@@ -441,6 +441,7 @@ const elements = document.querySelectorAll('.loading');
 
 function typeOneByOne(index = 0) {
   if (index >= elements.length) return; // 全部終わったら終了
+  el.textContent ='';
 
   const el = elements[index]; // 今処理する要素
   const text = el.getAttribute('data-text'); // 表示したい文字列を取得
