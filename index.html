@@ -436,24 +436,35 @@
       }, index * 600);
     });
   }//終わり
-
-  const elements = document.querySelectorAll('.loading');
-  function next() {
-  // 1つずつ処理
-}
-  elements.forEach(el => {
-  let display = [];
-const text = el.getAttribute('data-text')
-const chars = text.split(''); // ['H', 'E', 'L', 'L', 'O']
   
-chars.forEach((c, i) => {
-  setTimeout(() => {
-    display.push(c);
-    console.log(display.join('')); // H → HE → HEL → ...
-  }, i * 100);
-});
-  });
+const elements = document.querySelectorAll('.loading');
 
+function typeOneByOne(index = 0) {
+  if (index >= elements.length) return; // 全部終わったら終了
+
+  const el = elements[index]; // 今処理する要素
+  const text = el.getAttribute('data-text'); // 表示したい文字列を取得
+  const chars = text.split(''); // 1文字ずつに分ける
+  let display = []; // 表示する文字をためていく配列
+  let i = 0;
+
+  const interval = setInterval(() => {
+    display.push(chars[i]); // 一文字追加
+    el.textContent = display.join(''); // 表示更新
+    i++;
+
+    if (i >= chars.length) {
+      clearInterval(interval); // 終わったら止める
+      setTimeout(() => {
+        typeOneByOne(index + 1); // 次の要素を表示する
+      }, 500); // 少し休んでから次へ
+    }
+  }, 100); // 文字を出す速さ（100msごと）
+}
+
+typeOneByOne(); // 最初の要素からスタート
+
+  
 
   
 
