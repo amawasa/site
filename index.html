@@ -434,9 +434,9 @@
     });
   }//終わり
 
-const el = document.querySelectorAll('loading');
+const el = document.querySelectorAll('.loading');
   elements.forEach(el => {
-const fromText = "el.textContent";
+const fromText = el.textContent;
 const toText = el.getAttribute('data-text');
 let chars = fromText.split('');
 const target = toText.split('');
