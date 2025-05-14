@@ -10,18 +10,17 @@
   
 </head>
 <body>
- <img src="temae.png" alt="最前面画像" class="front-image">
 <div class="warning-screen" id="warning-screen">
-  <p class="kieru">loding now,pleas wait.</p>
-  <p class="loading" data-text="* 心臓の弱い方、特に幼児・高齢者の方はご注意ください。"></p><br>
-  <p class="loading" data-text="* このサイトで起こる事柄に一切の責任を負いません"></p>
-  <button onclick="showMain()">了解して進む</button>
+  <p class="loading" data-wa="* 心臓の弱い方、特に幼児・高齢者の方はご注意ください。">loding now,please wait.</p>
+  <p class="loading" data-wa="* このサイトで起こる事柄に一切の責任を負いません">EISHIN FESTIVAL.</p>
+  <button onclick="showMain()" id="enter-btn">了解して進む</button>
 </div>
 <div id="main-content" class="main-content" class="glitch">
   <header>
     <img src="タイトル.png" class="titleimg">
      </header>
 <div class="content">
+   <img src="temae.png" alt="最前面画像" class="front-image">
   <div>
     <h2 class="glitch" data-text="お化け屋敷"></h2>
   </div>
@@ -125,11 +124,9 @@
 
     .main-content{
       background-color: rgba(0,0,0,0.7);
-      backgroundxp-size: cover;
+      background-size: cover;
     background-blend-mode: overlay;
       margin: 0px;
-      width: fix-content;
-      
 
     }
 
@@ -179,6 +176,22 @@
 
 
     }
+      #enter-btn {
+    font-family: 'Creepster', cursive;
+    font-size: 2rem;
+    padding: 10px 30px;
+    cursor: pointer;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+    opacity: 0;
+  }
+
+  #enter-btn.zoom-in {
+    opacity: 1;
+  }
+
+  .hidden {
+    display: inline-block; /* もしくは block, 必要に応じて調整 */
+  }
 
     @keyframes flicker {
      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
@@ -216,9 +229,6 @@
       color: #aaa;
       margin: 0;
     }
-  .loading::after {
-    content: attr(data-text);
-  }
     .glitch {
       display: inline-block;
       position: relative;
@@ -253,6 +263,7 @@
      width: 100vw; /* 幅も確保してみる */
     object-fit: cover; /* 画面にフィットさせる */
     animation: zuum 50s infinite;
+      filter: contrast(150%); /* 明るさとコントラストを調整 */
     }
 
     @keyframes zuum {
@@ -435,33 +446,53 @@
     });
   }//終わり
 
-    window.addEventListener('DOMContentLoaded', () => {
+
+    const elements = document.querySelectorAll('.loading');
+
+       elements.forEach(el => {
+    const originalText = el.textContent.split('');
+    const finalText = el.getAttribute('data-wa').split('');
+    let current = [...originalText];
+
+    // 2秒待ってから文字化けスタート
     setTimeout(() => {
-      document.querySelectorAll('.kieru').forEach(el => {
-        el.textContent = ''; // 各要素の文字を消す
-      });
-    }, 3000); // 3秒後に消す
-  });
+      let glitchIndexes = originalText.map((_, i) => i);
+
+      const glitchStep = setInterval(() => {
+        if (glitchIndexes.length === 0) {
+          clearInterval(glitchStep);
+
+          // すべて文字化けしたあと、さらに2秒後に最終変化を始める
+          setTimeout(() => {
+            let changeIndexes = finalText.map((_, i) => i);
+            const changeStep = setInterval(() => {
+              if (changeIndexes.length === 0) {
+                clearInterval(changeStep);
+                document.getElementById('enter-btn').classList.add('zoom-in');
+                return;
+              }
+              const r = Math.floor(Math.random() * changeIndexes.length);
+              const idx = changeIndexes[r];
+              current[idx] = finalText[idx];
+              el.textContent = current.join('');
+              changeIndexes.splice(r, 1);
+            }, 50);
+          }, 200);
+
+          return;
+        }
+
+        const r = Math.floor(Math.random() * glitchIndexes.length);
+        const idx = glitchIndexes[r];
+        current[idx] = glitchChars[Math.floor(Math.random() * glitchChars.length)];
+        el.textContent = current.join('');
+        glitchIndexes.splice(r, 1);
+      }, 50);
+    }, 2000); // 最初の表示時間（2秒）
+        });
 
 
-const el = document.querySelectorAll('.loading');
-  elements.forEach(el => {
-const fromText = el.textContent;
-const toText = el.getAttribute('data-text');
-let chars = fromText.split('');
-const target = toText.split('');
-let i = 0;
 
-const interval = setInterval(() => {
-  if (i < target.length) {
-    chars[i] = target[i];
-    el.textContent = chars.join('');
-    i++;
-  } else {
-    clearInterval(interval);
-  }
-}, 300); // 一文字ごとの切り替え速度（ミリ秒）
-  });
 
       // オーバーレイを作成する
         const overlay = document.createElement('div');
