@@ -12,7 +12,8 @@
 <body>
  <img src="temae.png" alt="最前面画像" class="front-image">
 <div class="warning-screen" id="warning-screen">
-  <p class="loading" data-text="* 心臓の弱い方、特に幼児・高齢者の方はご注意ください。">loding now,pleas wait.</p><br>
+  <p class="kieru">loding now,pleas wait.</p>
+  <p class="loading" data-text="* 心臓の弱い方、特に幼児・高齢者の方はご注意ください。"></p><br>
   <p class="loading" data-text="* このサイトで起こる事柄に一切の責任を負いません"></p>
   <button onclick="showMain()">了解して進む</button>
 </div>
@@ -433,6 +434,15 @@
       }, index * 600);
     });
   }//終わり
+
+    window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      document.querySelectorAll('.kieru').forEach(el => {
+        el.textContent = ''; // 各要素の文字を消す
+      });
+    }, 3000); // 3秒後に消す
+  });
+
 
 const el = document.querySelectorAll('.loading');
   elements.forEach(el => {
