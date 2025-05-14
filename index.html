@@ -435,7 +435,8 @@
   }//終わり
 
 const el = document.querySelectorAll('loading');
-const fromText = "loding now,pleas wait.";
+  elements.forEach(el => {
+const fromText = "el.textContent";
 const toText = el.getAttribute('data-text');
 let chars = fromText.split('');
 const target = toText.split('');
@@ -450,6 +451,7 @@ const interval = setInterval(() => {
     clearInterval(interval);
   }
 }, 300); // 一文字ごとの切り替え速度（ミリ秒）
+  });
 
       // オーバーレイを作成する
         const overlay = document.createElement('div');
