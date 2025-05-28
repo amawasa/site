@@ -6,6 +6,8 @@
   <title>文化祭お化け屋敷</title>
   <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
 
   
 </head>
@@ -15,10 +17,39 @@
   <p class="loading" data-wa="* このサイトで起こる事柄に一切の責任を負いません">EISHIN FESTIVAL.</p>
   <button onclick="showMain()" id="enter-btn">了解して進む</button>
 </div>
+
+<button id="skip-button">Skip>></button>
+
+<div id="overlay" class="overlay">
+
+
+<div id="choice-box" style="display: none;">
+  <div class="outbox">
+  <button onclick="choiceA()">選択肢A</button>
+</div>
+  <div class="outbox">
+  <button onclick="choiceB()">選択肢B</button>
+</div>
+</div>
+</div>
+
+
+<div id="story-container">
+  <div id="story-box" onclick="nextText()">
+    <p id="speaker-name"></p>
+    <p id="story-text"></p>
+        <img id="next-icon" src="tap.png" />
+  </div>
+</div>
+
+
+
+
 <div id="main-content" class="main-content" class="glitch">
   <header>
     <img src="タイトル.png" class="titleimg">
      </header>
+
 <div class="content">
    <img src="temae.png" alt="最前面画像" class="front-image">
   <div>
@@ -84,508 +115,9 @@
 <img class="random-image" id="flash-image" src="" alt="恐怖ワード" style="display: none;">
 </div>
 
-<!-- 🔴 恐怖ワードの一瞬表示 -->
-<style>
-  body  {
-  background-color: #000;
-  color: #ffffff;
-  text-align: center;
-  font-size: 1.5rem; /* スマホ用のフォントサイズ */
-  background-image: url('background1.jpg'); /* メインの背景画像 */
-  background-size: cover; /* 画像が画面全体にカバーされる */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  transition: background-image 0.3s ease-in-out;
-  margin: 0;
-  }
-  body{
-       font-size: 2vh;
-  }
+<!-showMainScreen- 🔴 恐怖ワードの一瞬表示 -->
 
-@font-face {
-  font-family: "MyHorrorFont"; /* 好きな名前でOK */
-  src: url("onryou.TTF") format("truetype");
-}
-
-
-    .warning-screen {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background-color: #000;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 999999;
-        background-color: black;
-    }
-
-
-    .main-content{
-      background-color: rgba(0,0,0,0.7);
-      background-size: cover;
-    background-blend-mode: overlay;
-      margin: 0px;
-
-    }
-
-    .warning-screen p {
-      font-size: 1.3em;
-      color: red;
-      max-width: 80%;
-      margin-bottom: 30px;
-      line-height: 1.8;
-    }
-
-    .warning-screen button {
-      padding: 15px 30px;
-      font-size: 1.2em;
-      background-color: darkred;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-
-    #main-content {
-      display: none;
-      animation: fadeIn 2s ease-in-out forwards;
-        }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    header {
-      background-color: #111;
-      padding: 5px 2px;
-      opacity: 0.7;
-    }
-
-    .titleimg {
-      animation: flicker 2s infinite;
-    max-height: 300px;
-    width: 100%;
-   object-fit: cover; /* 画像の縦横比を保ちながら、枠に収める */
-   min-height: 100px; /* 最低高さを設定 */ 
-   max-height: 500px;
-      filter: brightness(150%) contrast(120%);
-      filter: brightness(150%); /* 画像を明るくする */
-
-
-    }
-      #enter-btn {
-    font-family: 'Creepster', cursive;
-    font-size: 2rem;
-    padding: 10px 30px;
-    cursor: pointer;
-    transition: transform 0.6s ease, opacity 0.6s ease;
-    opacity: 0;
-  }
-
-  #enter-btn.zoom-in {
-    opacity: 1;
-  }
-
-  .hidden {
-    display: inline-block; /* もしくは block, 必要に応じて調整 */
-  }
-
-    @keyframes flicker {
-     0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-        opacity: 1;
-      }
-      20%, 22%, 24%, 55% {
-        opacity: 0.06;
-        filter: brightness(150%);
-      }
-    }
-
-    .content {
-      padding: 40px 20px;
-      border-radius: 20px;
-      padding: 20px;
-    }
-
-    .content h2 {
-      color: #ff4444;
-      font-size: 2em;
-      margin-bottom: 20px;
-    }
-
-    .content p {
-      font-size: 1.3em;
-      line-height: 1.8;
-      max-width: 700px;
-      margin: auto;
-    }
-
-    footer {
-      background-color: #111;
-      padding: 20px;
-      font-size: 0.9em;
-      color: #aaa;
-      margin: 0;
-    }
-    .glitch {
-      display: inline-block;
-      position: relative;
-      white-space: pre-wrap;
-      font-weight: bold;
-      font-size: 1.2em;
-      font-family: 'MyHorrorFont', cursive;
-    }
-
-    .glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      left: 0;
-      top: 0;
-      opacity: 0.1;
-      color: red;
-      pointer-events: none;
-      filter: blur(1px);
-　　　　font-family: 'MyHorrorFont', cursive;
-    }
-
-    .flash {
-      animation: flashAnim 0.2s;
-    }
-    .front-image {
-    position: fixed; /* スクロールしても動かない */
-    top: 0;
-    left: 0;
-    z-index: 9999999; /* 最前面に表示 */
-    pointer-events: none; /* 当たり判定なし（クリックを無視） */  /* ビューポート幅100% */
-    height: 100vh; /* ビューポート高さ100% */
-     width: 100vw; /* 幅も確保してみる */
-    object-fit: cover; /* 画面にフィットさせる */
-    animation: zuum 50s infinite;
-      filter: contrast(150%); /* 明るさとコントラストを調整 */
-    }
-
-    @keyframes zuum {
-            0%, 54%, 100% {
-        opacity: 0.4;
-      }
-            30%, 77% {
-        opacity: 0.2;
-      }
-    }
-
-    @keyframes flashAnim {
-      0% { background-color: #f00; }
-      100% { background-color: #000; }
-    }
-
-    .shake {
-      animation: shakeAnim 0.4s ease-in-out;
-    }
-
-    @keyframes shakeAnim {
-      0% { transform: translate(0px, 0px); }
-      20% { transform: translate(-5px, 5px); }
-      40% { transform: translate(5px, -5px); }
-      60% { transform: translate(-5px, 5px); }
-      80% { transform: translate(5px, -5px); }
-      100% { transform: translate(0px, 0px); }
-    }
-    .warning-image {
-  max-width: 80%;
-  height: auto;
-  margin-bottom: 30px;
-  filter: drop-shadow(0 0 10px blue);
-  opacity: 0.1;
- }
-
-
-
-    #pupil {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: black;
-      position: relative;
-    }
-
-    /* 恐怖ワード */
-.random-image {
-  position: absolute; /* 画像の位置を絶対に設定 */
-  width: 30%; /* 画像のサイズ */
-  height: auto;
-  background-image: url('image.png'); /* 画像のURLを指定 */
-  background-size: cover;
-  background-position: center;
-  display: none; /* 初期状態では非表示 */
-  opacity: 0.7;
-}
-.hidden {
-  display: none;
-}
-#face img, #hand img {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 1000;
-  width: 100vh;
-  height: auto; /* 高さも画面いっぱいに */ /* 縦横比を保ちながら画面いっぱいに表示 */
-  opacity: 0.99;
-    mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
-  -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
-}
- 
-
- #face img {
-  animation: flicker 2s infinite;
-}
-
-
-@keyframes flicker {
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-    opacity: 1;
-  }
-  20%, 22%, 24%, 55% {
-    opacity: 0.06;
-    filter: brightness(150%);
-  }
-}
-
-#background {
-  background-color: black;
-  position: fixed;
-  z-index: 10;
-  top: 0; /* 上部に配置 */
-  left: 0; /* 左端に配置 */
-  width: 100vw; /* ビューポートの幅 */
-  height: 100vh; /* ビューポートの高さ */
-  object-fit: cover; /* 画面全体に背景を表示 */
-}
-
-
-@keyframes faceZoom {
-  0% {
-    transform: translate(-50%, -50%) scale(1);
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1.3);
-  }
-}
-
-@keyframes handDrop {
-  0% {
-    transform: translate(-50%, -50%);
-  }
-  100% {
-    transform: translate(-50%, 0%);
-  }
-}
-
-  </style>
-
-<script>
-  const glitchChars = '諱辟｡莠九↓謚懊￠蜃ｺ縺帙ｋ縺ｧ縺励ｇ縺°窶ｦ?諱先?悶→鬩壹″縺悟ｾ■蜿励￠繧蝨ｰ迯霑ｷ螳ｮ縺ｧ縲√≠縺ｪ縺溘?蜍?ｰ励′隧ｦ縺輔ｌ縺ｾ縺吶?譛ｬ迚ｩ縺ｮ髴翫′蜃ｺ繧九→縺?≧繧ｦ繝ｯ繧ｵ繧やｦ菫｡縺倥ｋ縺倶ｿ｡縺倥↑縺?°縺ｯ縲√≠縺ｪ縺滓ｬ｡隨ｬ縲阮?囓縺?ｻ贋ｸ九?縺ｩ縺薙°繧峨°閨槭％縺医ｋ縺吶☆繧頑ｳ｣縺阪縺ゅ↑縺溘′譛蠕後↓逶ｮ謦☆繧九縺ｯ窶ｦ窶ｦ縲';
-
-  function animateGlitchText(el, finalText, typingSpeed = 50, fixSpeed = 40) {
-    const chars = finalText.split('');
-    let display = [];
-    let i = 0;
-
-    const glitchInterval = setInterval(() => {
-      if (i < chars.length) {
-        const c = chars[i];
-        display.push(c === ' ' ? ' ' : glitchChars[Math.floor(Math.random() * glitchChars.length)]);
-        el.textContent = display.join('');
-        i++;
-      } else {
-        clearInterval(glitchInterval);
-        let j = 0;
-        const fixInterval = setInterval(() => {
-          if (j < chars.length) {
-            if (chars[j] !== ' ') display[j] = chars[j];
-            el.textContent = display.join('');
-            j++;
-          } else {
-            clearInterval(fixInterval);
-            setRandomGlitch(el, finalText);
-          }
-        }, fixSpeed);
-      }
-    }, typingSpeed);
-  }
-
-  function setRandomGlitch(el, text) {
-    setInterval(() => {
-      const chars = text.split('');
-      const glitched = chars.map(c => {
-        if (Math.random() < 0.08 && c !== ' ') {
-          return glitchChars[Math.floor(Math.random() * glitchChars.length)];
-        }
-        return c;
-      });
-      el.textContent = glitched.join('');
-      setTimeout(() => {
-        el.textContent = text;
-      }, 120);
-    }, 3000);
-  }
-
-  function showMain() {
-    document.getElementById('warning-screen').style.display = 'none';
-    const main = document.getElementById('main-content');
-    main.style.display = 'block';
-
-    document.querySelectorAll('.glitch').forEach((el, index) => {
-      const text = el.getAttribute('data-text');
-      setTimeout(() => {
-        animateGlitchText(el, text, 40, 40);
-      }, index * 600);
-    });
-  }//終わり
-
-
-    const elements = document.querySelectorAll('.loading');
-
-       elements.forEach(el => {
-    const originalText = el.textContent.split('');
-    const finalText = el.getAttribute('data-wa').split('');
-    let current = [...originalText];
-
-    // 2秒待ってから文字化けスタート
-    setTimeout(() => {
-      let glitchIndexes = originalText.map((_, i) => i);
-
-      const glitchStep = setInterval(() => {
-        if (glitchIndexes.length === 0) {
-          clearInterval(glitchStep);
-
-          // すべて文字化けしたあと、さらに2秒後に最終変化を始める
-          setTimeout(() => {
-            let changeIndexes = finalText.map((_, i) => i);
-            const changeStep = setInterval(() => {
-              if (changeIndexes.length === 0) {
-                clearInterval(changeStep);
-                document.getElementById('enter-btn').classList.add('zoom-in');
-                return;
-              }
-              const r = Math.floor(Math.random() * changeIndexes.length);
-              const idx = changeIndexes[r];
-              current[idx] = finalText[idx];
-              el.textContent = current.join('');
-              changeIndexes.splice(r, 1);
-            }, 50);
-          }, 150);
-
-          return;
-        }
-
-        const r = Math.floor(Math.random() * glitchIndexes.length);
-        const idx = glitchIndexes[r];
-        current[idx] = glitchChars[Math.floor(Math.random() * glitchChars.length)];
-        el.textContent = current.join('');
-        glitchIndexes.splice(r, 1);
-      }, 50);
-    }, 2000); // 最初の表示時間（2秒）
-        });
-
-
-
-
-      // オーバーレイを作成する
-        const overlay = document.createElement('div');
-        overlay.classList.add('overlay');
-        document.body.appendChild(overlay);
-  
-  // 🔴 恐怖ワードの出現ロジック
-const horrorImages = [
-  'nc266400_血痕02質感あり【フリー素材あそび】.png',
-  'nc197747_赤い手形【ホラー09】.png'
-];
-
-setInterval(() => {
-  const flashImage = document.getElementById('flash-image');
-  const randomSrc = horrorImages[Math.floor(Math.random() * horrorImages.length)];
-  flashImage.src = randomSrc;
-
-  // 画面のサイズに応じてランダムな位置を計算
-  const windowWidth = window.innerWidth;
-  const windowHeight = window.innerHeight;
-  const imageWidth = windowWidth * 0.3; // 画像サイズと合わせて30%
-  const randomX = Math.random() * (windowWidth - imageWidth);
-  const randomY = Math.random() * (windowHeight - imageWidth * 0.75); // 高さは画像比に応じて調整
-
-  flashImage.style.left = `${randomX}px`;
-  flashImage.style.top = `${randomY}px`;
-
-  flashImage.style.display = 'block';
-  flashImage.classList.add('flash'); // 点滅アニメーション（任意）
-
-  setTimeout(() => {
-    flashImage.style.display = 'none';
-    flashImage.classList.remove('flash');
-  }, 750); // 0.45秒間表示
-}, 3000);
-
-document.getElementById('scareButton').addEventListener('click', function() {
-  // glitch要素を消す
-  document.querySelectorAll('.main-content').forEach(elem => {
-    elem.style.display = 'none';
-  });
-
-  // 顔と手を表示
-  const face = document.getElementById('face');
-  const hand = document.getElementById('hand');
-  const background = document.getElementById('background');
-
-  face.classList.remove('hidden');
-  
-background.classList.remove('hidden');
-  hand.classList.remove('hidden');
-
-  // 顔を拡大アニメーション
-  face.querySelector('img').style.animation = 'faceZoom 2s forwards';
-
-  // 手を下降アニメーション
-  hand.querySelector('img').style.animation = 'handDrop 2s forwards';
-});
-
-
-
-
-
-          // 画像のリストを作成（メイン背景以外）
-        const images = [
-            'background2.jpg',
-            'background3.jpg',
-            'background4.jpg'
-        ];
-
-        let currentIndex = 0;
-
-        // 背景画像を変更する関数
-        function changeBackground() {
-            // ランダムに1つの画像を選択
-            const randomImage = images[Math.floor(Math.random() * images.length)];
-
-            // ランダムな画像を0.3秒間だけ表示
-            document.body.style.backgroundImage = `url(${randomImage})`;
-
-            // 0.3秒後に元の背景画像に戻す
-            setTimeout(() => {
-                document.body.style.backgroundImage = 'url(background1.jpg)';
-            }, 500); // 300ms = 0.3秒
-
-            // 次回の変更時間をランダムに設定（1秒から5秒の間）
-            const randomTime = Math.floor(Math.random() * 6000) + 26000; // 1000ms (1秒) から 5000ms (5秒) の間
-            setTimeout(changeBackground, randomTime); // 次回の画像変更を設定
-        }
-
-        // 最初の背景変更を呼び出し
-        changeBackground();
-</script>
 
 </body>
+  <script src="script.js"></script>
 </html>
