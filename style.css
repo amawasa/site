@@ -1,0 +1,440 @@
+
+  body  {
+  background-color: #000;
+  color: #ffffff;
+  text-align: center;
+  font-size: 1.5rem; /* スマホ用のフォントサイズ */
+  background-image: url('tabunmain.jpg'); /* メインの背景画像 */
+  background-size: cover; /* 画像が画面全体にカバーされる */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  transition: background-image 0.3s ease-in-out;
+  margin: 0;
+  }
+  body{
+       font-size: 2vh;
+  }
+
+@font-face {
+  font-family: "MyHorrorFont"; /* 好きな名前でOK */
+  src: url("onryou.TTF") format("truetype");
+}
+
+
+    .warning-screen {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-color: #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 999999;
+        background-color: black;
+    }
+
+
+    .main-content{
+      background-color: rgba(0,0,0,0.7);
+      background-size: cover;
+    background-blend-mode: overlay;
+      margin: 0px;
+
+    }
+
+    .warning-screen p {
+      font-size: 1.3em;
+      color: red;
+      max-width: 80%;
+      margin-bottom: 30px;
+      line-height: 1.8;
+    }
+
+    .warning-screen button {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      background-color: darkred;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    #main-content {
+      display: none;
+      animation: fadeIn 2s ease-in-out forwards;
+        }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    header {
+      background-color: #111;
+      padding: 5px 2px;
+      opacity: 0.7;
+    }
+
+    .titleimg {
+      animation: flicker 2s infinite;
+    max-height: 300px;
+    width: 100%;
+   object-fit: cover; /* 画像の縦横比を保ちながら、枠に収める */
+   min-height: 100px; /* 最低高さを設定 */ 
+   max-height: 500px;
+      filter: brightness(150%) contrast(120%);
+      filter: brightness(150%); /* 画像を明るくする */
+
+
+    }
+      #enter-btn {
+    font-family: 'Creepster', cursive;
+    font-size: 2rem;
+    padding: 10px 30px;
+    cursor: pointer;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+    opacity: 0;
+  }
+
+  #enter-btn.zoom-in {
+    opacity: 1;
+  }
+
+  .hidden {
+    display: inline-block; /* もしくは block, 必要に応じて調整 */
+  }
+
+    @keyframes flicker {
+     0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+      }
+      20%, 22%, 24%, 55% {
+        opacity: 0.06;
+        filter: brightness(150%);
+      }
+    }
+
+    .content {
+      padding: 40px 20px;
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    .content h2 {
+      color: #ff4444;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .content p {
+      font-size: 1.3em;
+      line-height: 1.8;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    footer {
+      background-color: #111;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #aaa;
+      margin: 0;
+    }
+    .glitch {
+      display: inline-block;
+      position: relative;
+      white-space: pre-wrap;
+      font-weight: bold;
+      font-size: 1.2em;
+      font-family: 'MyHorrorFont', cursive;
+    }
+
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0.1;
+      color: red;
+      pointer-events: none;
+      filter: blur(1px);
+      font-family: 'MyHorrorFont', cursive;
+    }
+
+    .flash {
+      animation: flashAnim 0.2s;
+    }
+    .front-image {
+    position: fixed; /* スクロールしても動かない */
+    top: 0;
+    left: 0;
+    z-index: 9999999; /* 最前面に表示 */
+    pointer-events: none; /* 当たり判定なし（クリックを無視） */  /* ビューポート幅100% */
+    height: 100vh; /* ビューポート高さ100% */
+     width: 100vw; /* 幅も確保してみる */
+    object-fit: cover; /* 画面にフィットさせる */
+    animation: zuum 50s infinite;
+      filter: contrast(150%); /* 明るさとコントラストを調整 */
+    }
+
+    @keyframes zuum {
+            0%, 54%, 100% {
+        opacity: 0.4;
+      }
+            30%, 77% {
+        opacity: 0.2;
+      }
+    }
+
+    @keyframes flashAnim {
+      0% { background-color: #f00; }
+      100% { background-color: #000; }
+    }
+
+    .shake {
+      animation: shakeAnim 0.4s ease-in-out;
+    }
+
+    @keyframes shakeAnim {
+      0% { transform: translate(0px, 0px); }
+      20% { transform: translate(-5px, 5px); }
+      40% { transform: translate(5px, -5px); }
+      60% { transform: translate(-5px, 5px); }
+      80% { transform: translate(5px, -5px); }
+      100% { transform: translate(0px, 0px); }
+    }
+    .warning-image {
+  max-width: 80%;
+  height: auto;
+  margin-bottom: 30px;
+  filter: drop-shadow(0 0 10px blue);
+  opacity: 0.1;
+ }
+
+
+
+    #pupil {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: black;
+      position: relative;
+    }
+
+    /* 恐怖ワード */
+.random-image {
+  position: absolute; /* 画像の位置を絶対に設定 */
+  width: 30%; /* 画像のサイズ */
+  height: auto;
+  background-image: url('image.png'); /* 画像のURLを指定 */
+  background-size: cover;
+  background-position: center;
+  display: none; /* 初期状態では非表示 */
+  opacity: 0.7;
+}
+.hidden {
+  display: none;
+}
+#face img, #hand img {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1000;
+  width: 100vh;
+  height: auto; /* 高さも画面いっぱいに */ /* 縦横比を保ちながら画面いっぱいに表示 */
+  opacity: 0.99;
+    mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+}
+ 
+
+ #face img {
+  animation: flicker 2s infinite;
+}
+
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+  }
+  20%, 22%, 24%, 55% {
+    opacity: 0.06;
+    filter: brightness(150%);
+  }
+}
+
+#background {
+  background-color: black;
+  position: fixed;
+  z-index: 10;
+  top: 0; /* 上部に配置 */
+  left: 0; /* 左端に配置 */
+  width: 100vw; /* ビューポートの幅 */
+  height: 100vh; /* ビューポートの高さ */
+  object-fit: cover; /* 画面全体に背景を表示 */
+}
+
+
+@keyframes faceZoom {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.3);
+  }
+}
+
+@keyframes handDrop {
+  0% {
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    transform: translate(-50%, 0%);
+  }
+
+}
+
+#story-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 998;
+}
+
+#story-box {
+  position: relative;
+  bottom: 10px;
+  width: 80%;
+  height: 20vh;
+  background: rgba(0, 0, 0, 0.8); 
+  color: white;
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 16px;
+  cursor: pointer;
+  z-index: 999;
+  pointer-events: auto;
+}
+
+#story-text {
+  text-align: left;
+  padding: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+#speaker-name {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  z-index: 1000;
+  margin: 0;
+}
+
+#next-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 60%;
+  height: 60%;
+  display: none;
+  pointer-events: none;
+}
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+#next-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  display: none;
+  pointer-events: none;
+  animation: float 1.5s ease-in-out infinite; /* ←追加 */
+}
+/* 黒い半透明フィルター */
+/* 黒い半透明フィルター */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+  display: none;
+  pointer-events: auto;
+}
+
+/* 選択肢ボックス（縦2つ） */
+#choice-box {
+  position: fixed;
+  color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  z-index: 9999;
+  width: 80%;
+  height: 30%; /* 2つの選択肢分で合計30% */
+}
+
+/* ボタンのスタイル */
+#choice-box button {
+  width: 100%;
+  color: white;
+  height: 45%; /* 合計90%、gapの分を引いたサイズ感 */
+  padding: 15px;
+  font-size: 1.2rem;
+  background-color: #000;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+    box-sizing: border-box;
+}
+
+#choice-box button:hover {
+  background-color: #ccc;
+}
+
+.outbox {
+  display: block;
+  background-color: #222; /* ボタンと色を変えて視覚的に分ける */
+  border: 2px solid red;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+#skip-button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 2px solid #444;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  z-index: 99999;
+}
