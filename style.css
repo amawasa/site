@@ -337,7 +337,7 @@
   left: 10px;
   color: white;
   font-weight: bold;
-  font-size: 2em;
+  font-size: 20px;
   z-index: 1000;
   margin: 0;
 }
@@ -405,7 +405,7 @@
   color: white;
   height: 45%; /* 合計90%、gapの分を引いたサイズ感 */
   padding: 15px;
-  font-size: 1.2rem;
+  font-size: 15px;
   background-color: #000;
   border: 2px solid #fff;
   border-radius: 8px;
