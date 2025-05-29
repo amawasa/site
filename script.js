@@ -501,7 +501,9 @@ document.getElementById("skip-button").addEventListener("click", () => {
 
 function skipdel() {
     document.getElementById("skip-button").style.display = "none";
+morihe()
 }
+
 
 function showMainScreen() {
   document.getElementById("story-container").style.display = "none";
