@@ -361,8 +361,8 @@
   position: absolute;
   bottom: 10px;
   right: 10px;
-  width: 40px;
-  height: 40px;
+  width: 20%;
+  height: 20%;
   display: none;
   pointer-events: none;
   animation: float 1.5s ease-in-out infinite; /* ←追加 */
