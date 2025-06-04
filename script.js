@@ -58,49 +58,59 @@
   }//終わり
 
 
-    const elements = document.querySelectorAll('.loading');
+function animateLoadingText(el) {
+  const originalText = el.textContent.split('');
+  const finalText = el.getAttribute('data-wa').split('');
+  let current = [...originalText];
 
-       elements.forEach(el => {
-    const originalText = el.textContent.split('');
-    const finalText = el.getAttribute('data-wa').split('');
-    let current = [...originalText];
+  setTimeout(() => {
+    let glitchIndexes = originalText.map((_, i) => i);
 
-    // 2秒待ってから文字化けスタート
-    setTimeout(() => {
-      let glitchIndexes = originalText.map((_, i) => i);
+    const glitchStep = setInterval(() => {
+      if (glitchIndexes.length === 0) {
+        clearInterval(glitchStep);
 
-      const glitchStep = setInterval(() => {
-        if (glitchIndexes.length === 0) {
-          clearInterval(glitchStep);
+        setTimeout(() => {
+          let changeIndexes = finalText.map((_, i) => i);
+          const changeStep = setInterval(() => {
+            if (changeIndexes.length === 0) {
+              clearInterval(changeStep);
+              document.getElementById('enter-btn').classList.add('zoom-in');
+              return;
+            }
+            const r = Math.floor(Math.random() * changeIndexes.length);
+            const idx = changeIndexes[r];
+            current[idx] = finalText[idx];
+            el.textContent = current.join('');
+            changeIndexes.splice(r, 1);
+          }, 50);
+        }, 200);
 
-          // すべて文字化けしたあと、さらに2秒後に最終変化を始める
-          setTimeout(() => {
-            let changeIndexes = finalText.map((_, i) => i);
-            const changeStep = setInterval(() => {
-              if (changeIndexes.length === 0) {
-                clearInterval(changeStep);
-                document.getElementById('enter-btn').classList.add('zoom-in');
-                return;
-              }
-              const r = Math.floor(Math.random() * changeIndexes.length);
-              const idx = changeIndexes[r];
-              current[idx] = finalText[idx];
-              el.textContent = current.join('');
-              changeIndexes.splice(r, 1);
-            }, 50);
-          }, 200);
+        return;
+      }
 
-          return;
-        }
+      const r = Math.floor(Math.random() * glitchIndexes.length);
+      const idx = glitchIndexes[r];
+      current[idx] = glitchChars[Math.floor(Math.random() * glitchChars.length)];
+      el.textContent = current.join('');
+      glitchIndexes.splice(r, 1);
+    }, 50);
+  }, 2000);
+}
 
-        const r = Math.floor(Math.random() * glitchIndexes.length);
-        const idx = glitchIndexes[r];
-        current[idx] = glitchChars[Math.floor(Math.random() * glitchChars.length)];
-        el.textContent = current.join('');
-        glitchIndexes.splice(r, 1);
-      }, 50);
-    }, 2000); // 最初の表示時間（2秒）
-        });
+const observer = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateLoadingText(entry.target);
+      obs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.loading').forEach(el => {
+  observer.observe(el);
+});
+
 
 
 const kyouhu = 0;
@@ -142,28 +152,25 @@ setInterval(() => {
  }
 }, 3000);
 
-document.getElementById('scareButton').addEventListener('click', function() {
+function gameov() {
   // glitch要素を消す
   document.querySelectorAll('.main-content').forEach(elem => {
     elem.style.display = 'none';
   });
 
-  // 顔と手を表示
+  // 顔と手と背景を表示
   const face = document.getElementById('face');
   const hand = document.getElementById('hand');
   const background = document.getElementById('background');
 
   face.classList.remove('hidden');
-  
-background.classList.remove('hidden');
+  background.classList.remove('hidden');
   hand.classList.remove('hidden');
 
-  // 顔を拡大アニメーション
+  // アニメーション適用
   face.querySelector('img').style.animation = 'faceZoom 2s forwards';
-
-  // 手を下降アニメーション
   hand.querySelector('img').style.animation = 'handDrop 2s forwards';
-});
+}
 
 
 
@@ -177,15 +184,15 @@ const storyTexts = [
   { speaker: "私", text: "学校の課題の資料のために図書室たけど、どこにあったけ、", scene: "tosyo" },
   { speaker: "私", text: "うーん,,,,,ないなー,,,っあ!!", scene: "school" },
   { speaker: "私", text: "白雪姫じゃん。なつかしー。こんなのも高校の図書室にあるんだ。", scene: "school" },
-  { speaker: "私", text: "うわ、なにこれボロボロじゃん。学校のものなんだから大切にしないと。", scene: "school" },
-  { speaker: "私", text: "最後に読んだの子供のころだったからストーリー忘れちゃってるなぁ。", scene: "school" },
+  { speaker: "私", text: "うわ、なにこれボロボロじゃん。学校のものなんだから大切にしないと。", scene: "bookopen" },
+  { speaker: "私", text: "最後に読んだの子供のころだったからストーリー忘れちゃってるなぁ。", scene: "" },
   { speaker: "私", text: "そうそう、白雪姫が毒リンゴを食べちゃって、倒れちゃって、", scene: "school" },
   { speaker: "私", text: "そこに、王子様が現れて、白雪姫にkissして、", scene: "school" },
   { speaker: "私", text: "喉につっかえてた毒リンゴがとれて,,,,あれ？", scene: "school" },
-  { speaker: "私", text: "な、なにこれ？", scene: "school" },
-  { speaker: "私", text: "いや、うっうわぁぁぁぁぁぁぁ,,,,,,,", scene: "school" },
-  { speaker: "", text: ",,,,,,,,,,,,,,,,,,,,,,,,,,", scene: "mori" },
-  { speaker: "私", text: "いてて、なんなんだよぉ、", scene: "tp" },
+  { speaker: "私", text: "な、なにこれ？", scene: "" },
+  { speaker: "私", text: "いや、うっうわぁぁぁぁぁぁぁ,,,,,,,", scene: "deco" },
+  { speaker: "", text: ",,,,,,,,,,,,,,,,,,,,,,,,,,", scene: "bookclo" },
+  { speaker: "私", text: "いてて、なんなんだよぉ、", scene: "mori" },
   { speaker: "私", text: "あれっ、ここはどこだ？私図書室にいたのに？", scene: "tp" },
   { speaker: "???", text: "き、君は,,,!?", scene: "tp" },
   { speaker: "???", text: "ま、まさか、外からの訪問者!?", scene: "tp" },
@@ -238,9 +245,6 @@ function startRandomBackground() {
   const nextTime = Math.floor(Math.random() * 6000) + 26000;
   backgroundTimerId = setTimeout(startRandomBackground, nextTime);
 }
-function morihe() {
-    document.body.style.backgroundImage = 'url(background1.jpg)';
-  }
 
 function stopRandomBackground() {
   clearTimeout(backgroundTimerId);
@@ -280,26 +284,27 @@ function nextText() {
 
   if (currentIndex < storyTexts.length) {
     const data = storyTexts[currentIndex];
-    document.getElementById("speaker-name").textContent = data.speaker;
+    document.getElementById("speaker-name").textContent = data.speaker || "";
     document.getElementById("next-icon").style.display = "none";
 
     typeText(data.text, document.getElementById("story-text"), () => {
       if (data.scene) handleScene(data.scene);
-    });
 
-    currentIndex++;
+      currentIndex++; // ✅ テキスト表示が終わったあとに進める！
+
+      // ✅ テキストが終わった直後にmainへ遷移
+      if (goToMainAfterTap && currentIndex >= storyTexts.length) {
+        goToMainAfterTap = false;
+        showMainScreen();
+      }
+    });
   } else {
-    // 通常の終了
+    // テキストがすでに終わってるなら、表示終了
     document.getElementById("story-container").style.display = "none";
     stopRandomBackground();
   }
-
-  // 次のテキストが終わった直後にmainへ遷移（フラグを使って）
-  if (goToMainAfterTap && currentIndex >= storyTexts.length) {
-    goToMainAfterTap = false;
-    showMainScreen();
-  }
 }
+
 
 
 function handleScene(scene) {
@@ -337,8 +342,23 @@ function handleScene(scene) {
       case "choiceN":
       showChoices("7");
       break;
+      case "enter":
+      bookup();
+      break;
+      case "bookopen":
+      bookdesu();
+      break;
+      case "bookclo":
+      booktozi();
+      break;
+      case "deco":
+      animateElement();
+      sceneTransition();
+      nextText();
+      morihe();
+      break;
     case "gameover":
-      gameover();
+      gameov();
       break;
     default:
       stopRandomBackground();
@@ -480,10 +500,10 @@ function selectChoice(choice) {
     );
   }else if (choice === "P") {
     storyTexts.splice(currentIndex, 0,
-      { speaker: "私", text: "無視して逃げる。", scene: "" },
-            { speaker: "", text: "", scene: "gameover" }
+            { speaker: "", text: "GAME OVER    サイトをもう一度読み込んでね", scene: "gameover" }
     );
-  }
+  gameov(); // 文章の後すぐに演出したいなら、nextText()のコールバックで入れることも可能
+}
 
 
   nextText();
@@ -513,5 +533,44 @@ function showMainScreen() {
 function backtosyo() {
 document.body.style.backgroundImage = 'url(tabunmain.jpg)';
 }
+
+function bookdesu() {
+  document.getElementById("SWbook").style.display = "block";
+}
+
+function booktozi() {
+  document.getElementById("SWbook").style.display = "none";
+}
+
+function animateElement() {
+  const elem = document.getElementById("SWbook");
+  elem.classList.add("bookUpdesu");
+}
+
+function idousuru() {
+  document.getElementById("black").style.display = "block";
+}
+
+function morihe() {
+    document.body.style.backgroundImage = 'url(publicdomainq-0059436qjx.jpg)';
+  }
+
+  function sceneTransition(callback) {
+  const screen = document.getElementById('screenFade');
+  
+  // フェードイン
+  screen.style.opacity = '1';
+  screen.style.pointerEvents = 'auto';
+
+  // 2秒待って、フェードアウト＋コールバック
+  setTimeout(() => {
+    if (callback) callback(); // シーン変更などここで実行
+    screen.style.opacity = '0';
+    screen.style.pointerEvents = 'none';
+  }, 2000);
+}
+ function backset() {
+  document.body.style.background = 'black'
+ }
 
 window.addEventListener("load", nextText);
