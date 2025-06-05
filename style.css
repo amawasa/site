@@ -16,6 +16,12 @@
        font-size: 2vh;
   }
 
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* 横スクロールを防止 */
+}
+
 @font-face {
   font-family: "MyHorrorFont"; /* 好きな名前でOK */
   src: url("onryou.TTF") format("truetype");
