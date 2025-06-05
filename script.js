@@ -46,6 +46,7 @@
 
   function showMain() {
     document.getElementById('warning-screen').style.display = 'none';
+    dissmall()
     const main = document.getElementById('story-container');
     main.style.display = 'flex';
 
@@ -198,7 +199,7 @@ const storyTexts = [
   { speaker: "???", text: "ま、まさか、外からの訪問者!?", scene: "tp" },
   { speaker: "私", text: "!? どこ？誰だ？", scene: "tp" },
   { speaker: "???", text: "下だよ、下", scene: "unknowman" },
-  { speaker: "小人", text: "僕は、小人、君の知っている白雪姫の小人の一人だよ。", scene: "smallman" },
+  { speaker: "小人", text: "僕は、小人、君の知っている白雪姫の小人の一人だよ。", scene: "smallman1" },
   { speaker: "小人", text: "君は、今、白雪姫のストーリーの中にいるってこと。", scene: "smallman" },
   { speaker: "私", text: "えっ!? 小人!? どういうこと???", scene: "talk" },
   { speaker: "私", text: "それに白雪姫!? なにこれ、夢!?", scene: "talk" },
@@ -208,11 +209,11 @@ const storyTexts = [
   { speaker: "小人", text: "それが、本来なら王子様のキスで起きる場面で、", scene: "smallman" },
   { speaker: "小人", text: "王子様も毒リンゴの毒をもらってしまい、倒れてしまったんだ。", scene: "smallman" },
   { speaker: "小人", text: "それで、起きなくなった白雪姫が、あの悪い王女に操られちゃって,,,", scene: "smallman" },
-  { speaker: "小人", text: "そこで、この世界の存在でない君に頼みたいことがあるんだ。", scene: "smallman" },
+  { speaker: "小人", text: "そこで、君に頼みたいことがあるんだ。", scene: "smallman" },
   { speaker: "私", text: "頼みたいこと?", scene: "talk" },
-  { speaker: "小人", text: "君だけがこの世界に干渉できるんだ。", scene: "smallman" },
   { speaker: "小人", text: "そこで白雪姫を治すための魔法のリンゴを集めてほしいんだ。", scene: "smallman" },
-  { speaker: "小人", text: "そうしたら、お礼に元の世界に戻してあげる。", scene: "smallman" },
+  { speaker: "小人", text: "体の小さい僕にはこの森は大きすぎるかなね", scene: "smallman" },
+  { speaker: "小人", text: "集めてくれたら、お礼に元の世界に戻してあげる。", scene: "smallman" },
   { speaker: "私", text: "魔法のリンゴ!?わかんないけど、白雪姫を助ければ、いいのね。", scene: "smallman" },
   { speaker: "私", text: "そしたら元の世界に戻れる。,,,", scene: "choice" }
 ];
@@ -263,15 +264,21 @@ function changeBackground(scene) {
   }
 }
 
+let intervalId = null; // ← グローバルに保持しておく
+
 function typeText(text, el, callback) {
   el.textContent = "";
   let i = 0;
   isTyping = true;
-  const timer = setInterval(() => {
+
+  clearInterval(intervalId); // 既存のタイピングがあれば止める
+
+  intervalId = setInterval(() => {
     el.textContent += text[i];
     i++;
     if (i >= text.length) {
-      clearInterval(timer);
+      clearInterval(intervalId);
+      intervalId = null;
       isTyping = false;
       document.getElementById("next-icon").style.display = "block";
       if (callback) callback();
@@ -290,6 +297,9 @@ function nextText() {
     typeText(data.text, document.getElementById("story-text"), () => {
       if (data.scene) handleScene(data.scene);
 
+      // ここでキャラ画像を更新
+      updateCharacterImage(data.speaker);
+
       currentIndex++; // ✅ テキスト表示が終わったあとに進める！
 
       // ✅ テキストが終わった直後にmainへ遷移
@@ -304,6 +314,7 @@ function nextText() {
     stopRandomBackground();
   }
 }
+
 
 
 
@@ -344,6 +355,9 @@ function handleScene(scene) {
       break;
       case "enter":
       bookup();
+      break;
+    case "smallman1":
+      smnsmall();
       break;
       case "bookopen":
       bookdesu();
@@ -431,7 +445,7 @@ function selectChoice(choice) {
   hideOverlay(); // ←ここで非表示
   if (choice === "A") {
     storyTexts.splice(currentIndex, 0,
-     { speaker: "私", text: "手元の本をめくり、過去に戻った!", scene: "" },
+     { speaker: "私", text: "りんごを探しに森へ進んだ!", scene: "" },
      { speaker: "", text: "", scene: "main" }
     );
   } else if (choice === "B") {
@@ -442,11 +456,13 @@ function selectChoice(choice) {
   } else if (choice === "C") {
     storyTexts.splice(currentIndex, 0,
       { speaker: "私", text: "わかった。私にしか出来ないんだね", scene: "" },
+           { speaker: "私", text: "りんごを探しに森へ進んだ!", scene: "" },
       { speaker: "", text: "", scene: "main" }
     );
   } else if (choice === "D") {
     storyTexts.splice(currentIndex, 0,
-      { speaker: "私", text: "だから、無理、白雪姫なんて知らない", scene: "choiceD" }
+      { speaker: "私", text: "だから、無理、白雪姫なんて知らない", scene: "" },
+      { speaker: "小人", text: "一生のお願い。頼むよ!", scene: "choiceD" }
     );
   } else if (choice === "E") {
     storyTexts.splice(currentIndex, 0,
@@ -455,53 +471,64 @@ function selectChoice(choice) {
     );
   } else if (choice === "F") {
     storyTexts.splice(currentIndex, 0,
-      { speaker: "私", text: "いくら頼んでも無理なものは無理。", scene: "choiceF" }
+      { speaker: "私", text: "いくら頼んでも無理なものは無理。", scene: "" },
+            { speaker: "小人", text: "白雪姫を助けられるのは君だけなんだ!", scene: "choiceF" }
     );
   } else if (choice === "G") {
     storyTexts.splice(currentIndex, 0,
       { speaker: "私", text: "うるっさいなぁ。わかったよ", scene: "" },
+           { speaker: "私", text: "りんごを探しに森へ進んだ!", scene: "" },
       { speaker: "", text: "", scene: "main" }
     );
   } else if (choice === "H") {
     storyTexts.splice(currentIndex, 0,
-      { speaker: "私", text: "はやく元の世界に戻してよ", scene: "choiceH" }
+      { speaker: "私", text: "はやく元の世界に戻してよ", scene: "" },
+       { speaker: "小人", text: "集めてきてくれたら帰すから!", scene: "choiceH" }
     );
   }else if (choice === "I") {
     storyTexts.splice(currentIndex, 0,
       { speaker: "私", text: "一回だけだからね!?", scene: "" },
+           { speaker: "私", text: "りんごを探しに森へ進んだ!", scene: "" },
       { speaker: "", text: "", scene: "main" }
     );
   }else if (choice === "J") {
     storyTexts.splice(currentIndex, 0,
-      { speaker: "私", text: "うるさいなぁ", scene: "choiceJ" }
+      { speaker: "私", text: "うるさいなぁ", scene: "" },
+      { speaker: "小人", text: "おねがいだよぉ!", scene: "choiceJ" }
     );
   }else if (choice === "K") {
     storyTexts.splice(currentIndex, 0,
       { speaker: "私", text: "はぁ,,,わかったよ。ッチ", scene: "" },
+           { speaker: "私", text: "嫌々ながらりんごを探しに森へ進んだ!", scene: "" },
       { speaker: "", text: "", scene: "main" }
     );
   }else if (choice === "L") {
     storyTexts.splice(currentIndex, 0,
-      { speaker: "私", text: "やらないって言ってるでしょ！", scene: "choiceL" }
+      { speaker: "私", text: "やらないって言ってるでしょ！", scene: "" },
+      { speaker: "小人", text: "ほんとに頼むよぉ!", scene: "choiceL" }
     );
   }else if (choice === "M") {
     storyTexts.splice(currentIndex, 0,
       { speaker: "私", text: "あぁぁもおわかったよやればいいんだろ？", scene: "" },
+           { speaker: "私", text: "悪態をつきながら、りんごを探しに森へ進んだ!", scene: "" },
       { speaker: "", text: "", scene: "main" }
     );
   }else if (choice === "N") {
     storyTexts.splice(currentIndex, 0,
-      { speaker: "私", text: "私には無理！", scene: "choiceN" }
+      { speaker: "私", text: "私には無理！", scene: "" },
+      { speaker: "小人", text: "じゃあ一人で帰れるもんならかえってみな!", scene: "choiceN" }
     );
   }else if (choice === "O") {
     storyTexts.splice(currentIndex, 0,
       { speaker: "私", text: "はぁ、やりますよ", scene: "" },
+           { speaker: "私", text: "キレ気味に言ってから、りんごを探しに森へ進んだ!", scene: "" },
       { speaker: "", text: "", scene: "main" }
     );
   }else if (choice === "P") {
     storyTexts.splice(currentIndex, 0,
             { speaker: "", text: "GAME OVER    サイトをもう一度読み込んでね", scene: "gameover" }
     );
+  dissmall()
   gameov(); // 文章の後すぐに演出したいなら、nextText()のコールバックで入れることも可能
 }
 
@@ -509,21 +536,37 @@ function selectChoice(choice) {
   nextText();
 }
 
+
 document.getElementById("skip-button").addEventListener("click", () => {
-  while (currentIndex < storyTexts.length && storyTexts[currentIndex].scene !== "choice") {
-    currentIndex++;
-  }
-  if (currentIndex < storyTexts.length) {
-    skipdel();
-    nextText();
+  if (isTyping) {
+    // 表示中なら全文即時表示して中断
+    clearInterval(intervalId);
+    intervalId = null;
+    isTyping = false;
+
+    const currentText = storyTexts[currentIndex];
+    const textBox = document.getElementById("text-box"); // ← 必要なら変更
+    textBox.textContent = currentText.text;
+    document.getElementById("next-icon").style.display = "block";
+
+    // スキップでは currentIndex を増やさない（即時表示だけ）
+  } else {
+    // 普通のスキップ処理
+    while (currentIndex < storyTexts.length && storyTexts[currentIndex].scene !== "choice") {
+      currentIndex++;
+    }
+    if (currentIndex < storyTexts.length) {
+      skipdel();
+      nextText();
+    }
   }
 });
 
 function skipdel() {
-    document.getElementById("skip-button").style.display = "none";
-morihe()
+  document.getElementById("skip-button").style.display = "none";
+  morihe(); // ← 他の演出関数
+  smnsmall();
 }
-
 
 function showMainScreen() {
   document.getElementById("story-container").style.display = "none";
@@ -541,6 +584,7 @@ function bookdesu() {
 function booktozi() {
   document.getElementById("SWbook").style.display = "none";
 }
+
 
 function animateElement() {
   const elem = document.getElementById("SWbook");
@@ -572,5 +616,79 @@ function morihe() {
  function backset() {
   document.body.style.background = 'black'
  }
+ const options = {
+  root: null,
+  rootMargin: '-40% 0px -40% 0px',
+  threshold: 0      // 中央付近に来たら 1 回だけ class を付加
+};
+
+const io = new IntersectionObserver((entries, observer)=> {
+  entries.forEach(entry=>{
+    if (entry.isIntersecting){
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);  // 一度だけで良ければ解除
+    }
+  });
+}, options);
+
+function setupImageZoom(id) {
+  const img = document.getElementById(id);
+  if (!img) return;
+
+  img.addEventListener('click', () => {
+    const fullSrc = img.getAttribute('data-full');
+    const overlayImage = document.getElementById('overlay-image');
+    overlayImage.src = fullSrc;
+    document.getElementById('image-overlay').classList.remove('hidden');
+  });
+}
+
+setupImageZoom('img1');
+setupImageZoom('img2');
+
+document.getElementById('close-overlay').addEventListener('click', () => {
+  document.getElementById('image-overlay').classList.add('hidden');
+});
+
+document.getElementById('image-overlay').addEventListener('click', (e) => {
+  if (e.target.id === 'image-overlay') {
+    document.getElementById('image-overlay').classList.add('hidden');
+  }
+});
+
+function updateCharacterImage(speaker) {
+  const wrapper = document.getElementById("character-wrapper");
+  const inner = document.getElementById("character-inner");
+  const img = document.getElementById("character-img");
+
+
+  if (speaker === "小人") {
+    img.src = "赤小人T.png";
+    inner.classList.remove("kobito-animated");
+    void inner.offsetWidth;
+    inner.classList.add("kobito-animated");
+  } else {
+    img.src = "赤小人.png";
+    inner.classList.remove("kobito-animated");
+  }
+}
+
+
+
+function smnsmall() {
+   document.getElementById("character-wrapper").style.display = "block"; 
+}
+function dissmall() {
+   document.getElementById("character-wrapper").style.display = "none"; 
+}
+
+function animateElement() {
+  const elem = document.getElementById("SWbook");
+  elem.style.transform = "translate(-50%, -50%) scale(15)";
+}
+
+
+// ページ内の .fade-section 全部を監視
+document.querySelectorAll('.fade-section').forEach(sec=> io.observe(sec));
 
 window.addEventListener("load", nextText);
