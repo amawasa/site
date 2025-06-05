@@ -408,16 +408,16 @@ function showChoices(type = "A") {
   }else if (type === "4") {
     document.getElementById("choice-box").innerHTML = `
       <button onclick="selectChoice('K')">はぁ,,,わかったよ。ッチ</button>
-      <button onclick="selectChoice('L')">黙れ、ガキなめてると潰すぞ</button>
+      <button onclick="selectChoice('L')">やらないって言ってるでしょ！</button>
     `;
   }else if (type === "5") {
     document.getElementById("choice-box").innerHTML = `
       <button onclick="selectChoice('M')">あぁぁもおわかったよやればいいんだろ？</button>
-      <button onclick="selectChoice('N')">蹴とばされたいの？ガキが。</button>
+      <button onclick="selectChoice('N')">私には無理！</button>
     `;
   }else if (type === "6") {
     document.getElementById("choice-box").innerHTML = `
-      <button onclick="selectChoice('O')">くそが、やりますよ</button>
+      <button onclick="selectChoice('O')">はぁ、やりますよ</button>
       <button onclick="selectChoice('P')">無視して逃げる。</button>
     `;
   }
@@ -482,7 +482,7 @@ function selectChoice(choice) {
     );
   }else if (choice === "L") {
     storyTexts.splice(currentIndex, 0,
-      { speaker: "私", text: "黙れ、ガキなめてると潰すぞ", scene: "choiceL" }
+      { speaker: "私", text: "やらないって言ってるでしょ！", scene: "choiceL" }
     );
   }else if (choice === "M") {
     storyTexts.splice(currentIndex, 0,
@@ -491,11 +491,11 @@ function selectChoice(choice) {
     );
   }else if (choice === "N") {
     storyTexts.splice(currentIndex, 0,
-      { speaker: "私", text: "蹴とばされたいの？ガキが。", scene: "choiceN" }
+      { speaker: "私", text: "私には無理！", scene: "choiceN" }
     );
   }else if (choice === "O") {
     storyTexts.splice(currentIndex, 0,
-      { speaker: "私", text: "くそが、やりますよ", scene: "" },
+      { speaker: "私", text: "はぁ、やりますよ", scene: "" },
       { speaker: "", text: "", scene: "main" }
     );
   }else if (choice === "P") {
