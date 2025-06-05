@@ -129,7 +129,7 @@ html, body {
       padding: 20px;
     }
 
-    .content h2 {
+    h2 {
       color: #ff4444;
       font-size: 2em;
       margin-bottom: 20px;
@@ -436,15 +436,31 @@ html, body {
   position: fixed;
   top: 10px;
   right: 10px;
-  z-index: 1000;
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 2px solid #444;
+  z-index: 9;
+  background-color: rgba(50, 50, 50, 0.7); /* やや暗めの半透明グレー */
+  color: #eee; /* 文字は薄いグレーで優しく */
+  border: 1.5px solid #888; /* 控えめなグレーの枠線 */
   padding: 8px 16px;
   font-size: 16px;
   cursor: pointer;
   border-radius: 6px;
-  z-index: 99999;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5); /* 少しだけ影で浮き出る感じ */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: Arial, sans-serif; /* 読みやすい標準フォント */
 }
+
+#skip-button:hover {
+  background-color: rgba(70, 70, 70, 0.9); /* ホバーで少し濃く */
+  color: #fff; /* 文字白でくっきり */
+  border-color: #aaa; /* 枠線少し明るく */
+}
+
+#skip-button:active {
+  background-color: rgba(30, 30, 30, 0.9);
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.7);
+}
+
+
 #SWbook{
   position: fixed;
   display: none;
@@ -460,9 +476,6 @@ html, body {
   }
 }
 
-.bookUpdesu {
-  animation: Up 15s ease-out forwards;
-}
 
 .fade-screen {
   position: fixed;
@@ -495,4 +508,132 @@ html, body {
   transform: translateX(-50%);
   width: 150%;
   pointer-events: none;
+}
+
+.imgdesu {
+  width: 90vw;         /* 画面の横幅の90% */
+  height: auto;        /* 縦横比を保って高さを自動調整 */
+  display: block;
+  margin: 0 auto;      /* 中央寄せ（必要なら） */
+}
+.fade-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.section-image {
+  display: flex;              /* ← フレックスボックスで画像を中央に */
+  justify-content: center;   /* ← 横方向中央寄せ */
+  width: 100%;
+  margin: 0 auto;
+}
+.image-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8); /* 薄い黒 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999;
+}
+
+.image-overlay img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+}
+
+.image-overlay.hidden {
+  display: none;
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 3rem;
+  color: white;
+  cursor: pointer;
+  z-index: 1000000;
+  user-select: none;
+}
+  #apple-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100px;
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    padding: 10px;
+    z-index: 10;
+    pointer-events: none; /* 親はクリック無効 */
+  }
+
+  /* りんご画像 */
+  .apple {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    pointer-events: auto; /* 個別に有効化 */
+    transition: transform 2s ease, opacity 2s ease;
+  }
+
+  /* 消えるアニメーション用 */
+  .disappear {
+    transform: scale(2);
+    opacity: 0;
+  }
+
+  /* カウント表示 */
+  #apple-count {
+    position: fixed;
+    top: 10px;
+    left: 70px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    user-select: none;
+    z-index: 20;
+  }
+#SWbook {
+  position: fixed;       /* 画面に固定 */
+  top: 50%;             /* 上から50% */
+  left: 50%;            /* 左から50% */
+  transform: translate(-50%, -50%) scale(1); /* scaleは初期1 */
+  max-width: 80vw;      /* 横幅最大80% */
+  max-height: 80vh;     /* 高さ最大80% */
+  transition: transform 15s ease-out;  /* transformの変化を15秒かけて */
+}
+/* ラッパー：中央固定 */
+#character-wrapper {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  display: none;
+}
+
+#character-img {
+  height: 50vh;
+  width: auto;
+}
+
+@keyframes upDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.kobito-animated {
+  animation: upDown 1.2s ease-in-out infinite;
 }
