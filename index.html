@@ -32,6 +32,12 @@
 </div>
 </div>
 </div>
+<div id="character-wrapper">
+  <div id="character-inner"> <!-- ←これが必要！ -->
+    <img id="character-img" src="赤小人.png">
+  </div>
+</div>
+
 
 <div id="screenFade" class="fade-screen"></div>
 
@@ -49,67 +55,80 @@
 
 
 <div id="main-content" class="main-content" class="glitch">
- 
+
+
   <div class="image-container">
     <img src="kan.png" class="background-img">
     <img src="タイトル.png" class="titleimg">
   </div>
 
-
-<div class="content">
-   <img src="temae.png" alt="最前面画像" class="front-image">
-  <div>
-    <h2 class="glitch" data-text="林檎集め"></h2>
-  </div>
-  <p class="glitch" data-text="あなたは、森の中を探索し、"></p><br>
-  <p class="glitch" data-text="林檎を回収しなければななりません。"></p><br>
-  <p class="glitch" data-text="栄進祭で、あなたの勇気が試されます。"></p><br>
-  <p class="glitch" data-text="林檎を集めたら"></p><br><br>
-  <p class="glitch" data-text="最後に何かもらえるかも....?"></p><br>
-  <p class="glitch" data-text="この森の中では、"></p><br>
-  <p class="glitch" data-text="生きてる人間はあなただけ"></p><br>
+ <section class="fade-section">
+   <div class="content" id="section-inner">
+    <img src="temae.png" alt="最前面画像" class="front-image">
+     <div>
+       <h2 class="glitch" data-text="林檎集め" id="section-title"></h2>
+     </div>
+    <figure class="section-image"><img src="Scanned_20250605-2140.jpg" alt="scene1" class="imgdesu"></figure>
+    <div class="textdayo">
+    <p class="glitch" data-text="あなたは、森の中を探索し、"></p><br>
+    <p class="glitch" data-text="林檎を回収しなければななりません。"></p><br>
+    <p class="glitch" data-text="栄進祭で、あなたの勇気が試されます。"></p><br>
+    <p class="glitch" data-text="林檎を集めたら"></p><br><br>
+    <p class="glitch" data-text="最後に何かもらえるかも....?"></p><br>
+    <p class="glitch" data-text="この森の中では、"></p><br>
+    <p class="glitch" data-text="生きてる人間はあなただけ"></p><br>
     <p class="glitch" data-text="無事に脱出できるでしょうか...?"></p>
-
+  </div>
+</div>
+ </section>
+ <section class="fade-section" id="section-inner">
   <div class="section">
     <div>
-      <h2 class="glitch" data-text="マップ案内"></h2>
+      <h2 class="glitch" data-text="マップ案内" id="section-title"></h2>
     </div>
-    <p class="glitch" data-text="会場は、一階、3年3組教室です。"></p><br>
-    <p class="glitch" data-text="二つの木を頼りに来てください"></p><br>
-    <p class="glitch" data-text="暗闇の中で迷い"></p><br>
-    <p class="glitch" data-text="白雪姫に襲われないよう"></p><br>
-    <p class="glitch" data-text="ご注意ください。"></p>
-  </div>
-
-  <div class="section">
+     <figure class="section-image"><img id="img1" src="Smap.png" alt="scene1" class="imgdesu" data-full="map.png"></figure>
+     <div class="textdayo">
+     <p class="glitch" data-text="会場は、一階、3年3組教室です。"></p><br>
+     <p class="glitch" data-text="二つの木を頼りに来てください"></p><br>
+     <p class="glitch" data-text="暗闇の中で迷い"></p><br>
+     <p class="glitch" data-text="白雪姫に襲われないよう"></p><br>
+     <p class="glitch" data-text="ご注意ください。"></p>
+  </div> 
+</div>
+ </section>
+ <section class="fade-section">
+  <div class="section" id="section-inner">
     <div>
-      <h2 class="glitch" data-text="入場料"></h2>
+      <h2 class="glitch" data-text="入場料" id="section-title"></h2>
     </div>
-    <p class="glitch" data-text="入場料は、お一人さま 100円。"></p><br>
-    <p class="glitch" data-text="なお、一度入場された場合、"></p><br>
-    <p class="glitch" data-text="途中での退出はできません。"></p><br>
-    <p class="glitch" data-text="恐怖の旅路に、覚悟を持ってお進みください…。"></p><br>
+     <!-figure class="section-image"><!-img src="img/scene1.jpg" alt="scene1" class="imgdesu"><!-/figure>
+     <div class="textdayo">
+     <p class="glitch" data-text="入場料は、お一人さま 100円。"></p><br>
+     <p class="glitch" data-text="なお、一度入場された場合、"></p><br>
+     <p class="glitch" data-text="途中での退出はできません。"></p><br>
+     <p class="glitch" data-text="恐怖の旅路に、覚悟を持ってお進みください…。"></p><br>
+   </div>
+ </div>
+ </section>
+  <br>
+ <section class="fade-section" >
+  <div class="section" id="section-inner">
+    <p class="glitch" data-text="小人がメモをに残していたようです…。" id="section-title" ></p><br>
+    <figure class="section-image"><img  id="img2" src="memo.png" alt="scene1" class="imgdesu" data-full="nazo.png"></figure>
   </div>
-<br>
-
-    <div class="section">
-    <div>
-    <p class="glitch" data-text="小人がメモをに残していたようです…。"></p><br>
-
-  </div>
+ </section>
     <footer>
     © 2025 3年3組
   </footer>
 
 
+<div id="image-overlay" class="image-overlay hidden">
+  <span id="close-overlay" class="close-button">×</span>
+  <img id="overlay-image" src="" alt="拡大画像">
+</div>
 
-
-
-
-    
       
     </div>
-
 
     </div>
 <div id="background" class="hidden">
