@@ -565,6 +565,7 @@ document.getElementById("skip-button").addEventListener("click", () => {
 function skipdel() {
   document.getElementById("skip-button").style.display = "none";
   morihe(); // ← 他の演出関数
+  booktozi();
   smnsmall();
 }
 
