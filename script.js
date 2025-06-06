@@ -569,6 +569,7 @@ function skipdel() {
 }
 
 function showMainScreen() {
+  dissmall() 
   document.getElementById("story-container").style.display = "none";
   document.getElementById("main-content").style.display = "block";
 }
