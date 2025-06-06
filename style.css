@@ -620,6 +620,645 @@ html, body {
   position: fixed;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 1000;
+  display: none;
+}
+
+#character-img {
+  height: 50vh;
+  width: auto;
+}
+
+@keyframes upDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.kobito-animated {
+  animation: upDown 1.2s ease-in-out infinite;
+}
+
+  body  {
+  background-color: #000;
+  color: #ffffff;
+  text-align: center;
+  font-size: 1.5rem; /* スマホ用のフォントサイズ */
+  background-image: url('tabunmain.jpg'); /* メインの背景画像 */
+  background-size: cover; /* 画像が画面全体にカバーされる */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  transition: background-image 0.3s ease-in-out;
+  margin: 0;
+  }
+  body{
+       font-size: 2vh;
+  }
+div{
+  margin: 0;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* 横スクロールを防止 */
+}
+
+@font-face {
+  font-family: "MyHorrorFont"; /* 好きな名前でOK */
+  src: url("onryou.TTF") format("truetype");
+}
+
+
+    .warning-screen {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-color: #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 999999;
+        background-color: black;
+    }
+
+
+    .main-content{
+      background-color: rgba(0,0,0,0.7);
+      background-size: cover;
+    background-blend-mode: overlay;
+      margin: 0px;
+
+    }
+
+    .warning-screen p {
+      font-size: 1.3em;
+      color: red;
+      max-width: 80%;
+      margin-bottom: 30px;
+      line-height: 1.8;
+    }
+
+    .warning-screen button {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      background-color: darkred;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    #main-content {
+      display: none;
+      animation: fadeIn 2s ease-in-out forwards;
+        }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    header {
+      padding: 5px 2px;
+      height: 20%;
+    }
+
+    .titleimg {
+      animation: flicker 2s infinite;
+    max-height: 300px;
+    width: 100%;
+   object-fit: cover; /* 画像の縦横比を保ちながら、枠に収める */
+   min-height: 100px; /* 最低高さを設定 */ 
+   max-height: 500px;
+      filter: brightness(150%) contrast(120%);
+      filter: brightness(150%); /* 画像を明るくする */
+
+
+    }
+      #enter-btn {
+    font-family: 'Creepster', cursive;
+    font-size: 2rem;
+    padding: 10px 30px;
+    cursor: pointer;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+    opacity: 0;
+  }
+
+  #enter-btn.zoom-in {
+    opacity: 1;
+  }
+
+  .hidden {
+    display: inline-block; /* もしくは block, 必要に応じて調整 */
+  }
+
+    @keyframes flicker {
+     0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+      }
+      20%, 22%, 24%, 55% {
+        opacity: 0.06;
+        filter: brightness(150%);
+      }
+    }
+
+    .content {
+      padding: 40px 20px;
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    h2 {
+      color: #ff4444;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .content p {
+      font-size: 1.3em;
+      line-height: 1.8;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    footer {
+      background-color: #111;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #aaa;
+      margin: 0;
+    }
+    .glitch {
+      display: inline-block;
+      position: relative;
+      white-space: pre-wrap;
+      font-weight: bold;
+      font-size: 1.2em;
+      font-family: 'MyHorrorFont', cursive;
+    }
+
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0.1;
+      color: red;
+      pointer-events: none;
+      filter: blur(1px);
+      font-family: 'MyHorrorFont', cursive;
+    }
+
+    .flash {
+      animation: flashAnim 0.2s;
+    }
+    .front-image {
+    position: fixed; /* スクロールしても動かない */
+    top: 0;
+    left: 0;
+    z-index: 9999999; /* 最前面に表示 */
+    pointer-events: none; /* 当たり判定なし（クリックを無視） */  /* ビューポート幅100% */
+    height: 100vh; /* ビューポート高さ100% */
+     width: 100vw; /* 幅も確保してみる */
+    object-fit: cover; /* 画面にフィットさせる */
+    animation: zuum 50s infinite;
+      filter: contrast(150%); /* 明るさとコントラストを調整 */
+    }
+
+    @keyframes zuum {
+            0%, 54%, 100% {
+        opacity: 0.4;
+      }
+            30%, 77% {
+        opacity: 0.2;
+      }
+    }
+
+    @keyframes flashAnim {
+      0% { background-color: #f00; }
+      100% { background-color: #000; }
+    }
+
+    .shake {
+      animation: shakeAnim 0.4s ease-in-out;
+    }
+
+    @keyframes shakeAnim {
+      0% { transform: translate(0px, 0px); }
+      20% { transform: translate(-5px, 5px); }
+      40% { transform: translate(5px, -5px); }
+      60% { transform: translate(-5px, 5px); }
+      80% { transform: translate(5px, -5px); }
+      100% { transform: translate(0px, 0px); }
+    }
+    .warning-image {
+  max-width: 80%;
+  height: auto;
+  margin-bottom: 30px;
+  filter: drop-shadow(0 0 10px blue);
+  opacity: 0.1;
+ }
+
+
+
+    #pupil {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: black;
+      position: relative;
+    }
+
+    /* 恐怖ワード */
+.random-image {
+  position: absolute; /* 画像の位置を絶対に設定 */
+  width: 30%; /* 画像のサイズ */
+  height: auto;
+  background-image: url('image.png'); /* 画像のURLを指定 */
+  background-size: cover;
+  background-position: center;
+  display: none; /* 初期状態では非表示 */
+  opacity: 0.7;
+}
+.hidden {
+  display: none;
+}
+#face img, #hand img {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1000;
+  width: 100vh;
+  height: auto; /* 高さも画面いっぱいに */ /* 縦横比を保ちながら画面いっぱいに表示 */
+  opacity: 0.99;
+    mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+}
+ 
+
+ #face img {
+  animation: flicker 2s infinite;
+}
+
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+  }
+  20%, 22%, 24%, 55% {
+    opacity: 0.06;
+    filter: brightness(150%);
+  }
+}
+
+#background {
+  background-color: black;
+  position: fixed;
+  z-index: 10;
+  top: 0; /* 上部に配置 */
+  left: 0; /* 左端に配置 */
+  width: 100vw; /* ビューポートの幅 */
+  height: 100vh; /* ビューポートの高さ */
+  object-fit: cover; /* 画面全体に背景を表示 */
+}
+
+
+@keyframes faceZoom {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.3);
+  }
+}
+
+@keyframes handDrop {
+  0% {
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    transform: translate(-50%, 0%);
+  }
+
+}
+
+#story-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 998;
+}
+
+#story-box {
+  position: relative;
+  bottom: 10px;
+  width: 80%;
+  height: 20vh;
+  background: rgba(0, 0, 0, 0.8); 
+  color: white;
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 16px;
+  cursor: pointer;
+  z-index: 999;
+  pointer-events: auto;
+}
+
+#story-text {
+  text-align: left;
+  padding: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+#speaker-name {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  z-index: 1000;
+  margin: 0;
+}
+
+#next-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 60%;
+  height: 60%;
+  display: none;
+  pointer-events: none;
+}
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+#next-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 20%;
+  height: 40%;
+  display: none;
+  pointer-events: none;
+  animation: float 1.5s ease-in-out infinite; /* ←追加 */
+}
+/* 黒い半透明フィルター */
+/* 黒い半透明フィルター */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+  display: none;
+  pointer-events: auto;
+}
+
+/* 選択肢ボックス（縦2つ） */
+#choice-box {
+  position: fixed;
+  color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  z-index: 9999;
+  width: 90%;
+  height: 30%; /* 2つの選択肢分で合計30% */
+}
+
+/* ボタンのスタイル */
+#choice-box button {
+  width: 100%;
+  color: white;
+  height: 45%; /* 合計90%、gapの分を引いたサイズ感 */
+  padding: 15px;
+  font-size: 15px;
+  background-color: #000;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+    box-sizing: border-box;
+}
+
+#choice-box button:hover {
+  background-color: #ccc;
+}
+
+.outbox {
+  display: block;
+  background-color: #222; /* ボタンと色を変えて視覚的に分ける */
+  border: 2px solid red;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+#skip-button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 9;
+  background-color: rgba(50, 50, 50, 0.7); /* やや暗めの半透明グレー */
+  color: #eee; /* 文字は薄いグレーで優しく */
+  border: 1.5px solid #888; /* 控えめなグレーの枠線 */
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5); /* 少しだけ影で浮き出る感じ */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: Arial, sans-serif; /* 読みやすい標準フォント */
+}
+
+#skip-button:hover {
+  background-color: rgba(70, 70, 70, 0.9); /* ホバーで少し濃く */
+  color: #fff; /* 文字白でくっきり */
+  border-color: #aaa; /* 枠線少し明るく */
+}
+
+#skip-button:active {
+  background-color: rgba(30, 30, 30, 0.9);
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.7);
+}
+
+
+#SWbook{
+  position: fixed;
+  display: none;
+  width: 90%;
+}
+
+@keyframes Up {
+  0% {
+   width: 90%;
+  }
+  100% {
+  width: 500%;
+  }
+}
+
+
+.fade-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+  z-index: 9999;
+}
+.image-container {
+  position: relative;
+  width: 300px;       /* コンテナ幅は任意 */
+  margin: 0 auto;     /* コンテナ自体を左右中央に */
+}
+
+.background-img {
+  display: block;
+  height: 30vh;       /* 高さ調整 */
+  margin: 0 auto;     /* 画像も左右中央 */
+}
+
+.titleimg {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150%;
+  pointer-events: none;
+}
+
+.imgdesu {
+  width: 90vw;         /* 画面の横幅の90% */
+  height: auto;        /* 縦横比を保って高さを自動調整 */
+  display: block;
+  margin: 0 auto;      /* 中央寄せ（必要なら） */
+}
+.fade-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.section-image {
+  display: flex;              /* ← フレックスボックスで画像を中央に */
+  justify-content: center;   /* ← 横方向中央寄せ */
+  width: 100%;
+  margin: 0 auto;
+}
+.image-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8); /* 薄い黒 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999;
+}
+
+.image-overlay img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+}
+
+.image-overlay.hidden {
+  display: none;
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 3rem;
+  color: white;
+  cursor: pointer;
+  z-index: 1000000;
+  user-select: none;
+}
+  #apple-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100px;
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    padding: 10px;
+    z-index: 10;
+    pointer-events: none; /* 親はクリック無効 */
+  }
+
+  /* りんご画像 */
+  .apple {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    pointer-events: auto; /* 個別に有効化 */
+    transition: transform 2s ease, opacity 2s ease;
+  }
+
+  /* 消えるアニメーション用 */
+  .disappear {
+    transform: scale(2);
+    opacity: 0;
+  }
+
+  /* カウント表示 */
+  #apple-count {
+    position: fixed;
+    top: 10px;
+    left: 70px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    user-select: none;
+    z-index: 20;
+  }
+#SWbook {
+  position: fixed;       /* 画面に固定 */
+  top: 50%;             /* 上から50% */
+  left: 50%;            /* 左から50% */
+  transform: translate(-50%, -50%) scale(1); /* scaleは初期1 */
+  max-width: 80vw;      /* 横幅最大80% */
+  max-height: 80vh;     /* 高さ最大80% */
+  transition: transform 15s ease-out;  /* transformの変化を15秒かけて */
+}
+/* ラッパー：中央固定 */
+#character-wrapper {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 3;
   display: none;
 }
@@ -637,3 +1276,70 @@ html, body {
 .kobito-animated {
   animation: upDown 1.2s ease-in-out infinite;
 }
+    .counter-box {
+      display: none;
+      border: 2px solid white;
+      border-radius: 10px;
+      background: black;
+    }
+    .counter {
+      font-size: 1rem;
+      margin: 10px 0;
+    }
+    /* ---- 1) ヒントボタン ------------------------------ */
+#hint-button {
+  position: absolute;          /* オーバーレイ内で右上に固定 */
+  top: 70px;                   /* close-button より少し下 */
+  right: 20px;
+  padding: 8px 14px;
+  font-size: 1rem;
+  color: #fff;
+  background: #ff3333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 1000001;            /* close-button より手前 */
+  transition: opacity .2s;
+}
+#hint-button:hover { opacity: .8; }
+
+/* ---- 2) Yes / No ダイアログ ----------------------- */
+#hint-dialog {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  color: #000;
+  padding: 24px 28px;
+  min-width: 220px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0,0,0,.6);
+  z-index: 1000002;            /* さらに手前 */
+  text-align: center;
+}
+#hint-dialog button {
+  margin: 0 10px;
+  padding: 6px 18px;
+  font-size: 1rem;
+  background: #222;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity .2s;
+}
+#hint-dialog button:hover { opacity: .8; }
+
+/* ---- 3) 非表示に使う共通クラス -------------------- */
+.hidden { display: none; }
+#hint-button {
+  position: absolute;
+  top: 20px;
+  right: 80px; /* 閉じるボタン（×）と重ならないように少し左に */
+  z-index: 1000001;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 2px solid white;
+  padding: 8px 12px;
+  font-size: 1rem;
+  border
