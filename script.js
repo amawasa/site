@@ -641,22 +641,58 @@ function setupImageZoom(id) {
     const fullSrc = img.getAttribute('data-full');
     const overlayImage = document.getElementById('overlay-image');
     overlayImage.src = fullSrc;
-    document.getElementById('image-overlay').classList.remove('hidden');
+    const overlay = document.getElementById('image-overlay');
+    overlay.classList.remove('hidden');
+
+    // img2だけヒントボタンを表示
+    const hintBtn = document.getElementById('hint-button');
+    const hintDialog = document.getElementById('hint-dialog');
+    if (id === 'img2') {
+      hintBtn.classList.remove('hidden');
+      hintDialog.classList.add('hidden'); // ダイアログは閉じておく
+    } else {
+      hintBtn.classList.add('hidden');
+      hintDialog.classList.add('hidden');
+    }
   });
 }
 
+// 初期設定
 setupImageZoom('img1');
 setupImageZoom('img2');
 
-document.getElementById('close-overlay').addEventListener('click', () => {
-  document.getElementById('image-overlay').classList.add('hidden');
+// ヒントボタン押下でYes/Noダイアログを表示
+document.getElementById('hint-button').addEventListener('click', () => {
+  document.getElementById('hint-dialog').classList.remove('hidden');
 });
 
+// Yesボタンの処理
+document.getElementById('hint-yes').addEventListener('click', () => {
+  alert('「かみ」が「みみ」になるとき｛か　が　み｝なので');
+  document.getElementById('hint-dialog').classList.add('hidden');
+});
+
+// Noボタンの処理
+document.getElementById('hint-no').addEventListener('click', () => {
+  alert('「己の力でといてみせよ」');
+  document.getElementById('hint-dialog').classList.add('hidden');
+});
+
+// オーバーレイを閉じる処理
+document.getElementById('close-overlay').addEventListener('click', () => {
+  document.getElementById('image-overlay').classList.add('hidden');
+  // ダイアログも閉じる
+  document.getElementById('hint-dialog').classList.add('hidden');
+});
+
+// 画像オーバーレイ外クリックで閉じる処理
 document.getElementById('image-overlay').addEventListener('click', (e) => {
   if (e.target.id === 'image-overlay') {
     document.getElementById('image-overlay').classList.add('hidden');
+    document.getElementById('hint-dialog').classList.add('hidden');
   }
 });
+
 
 function updateCharacterImage(speaker) {
   const wrapper = document.getElementById("character-wrapper");
@@ -688,6 +724,63 @@ function animateElement() {
   const elem = document.getElementById("SWbook");
   elem.style.transform = "translate(-50%, -50%) scale(15)";
 }
+    const NAMESPACE = 'amawasa.github.io'; // サイト固有識別子
+    const KEY = 'site'; // ページ識別名
+
+    // 累計閲覧数の取得と加算
+    fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`)
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("total").textContent = data.value;
+      });
+
+    // 簡易リアルタイム閲覧者数
+    const nowSpan = document.getElementById("now");
+    const sessionKey = 'viewer-session';
+    const SESSION_LIFETIME = 15000; // 15秒をリアルタイムとみなす
+
+    // ユーザー識別（localStorageに一時保存）
+    if (!localStorage.getItem(sessionKey)) {
+      localStorage.setItem(sessionKey, Date.now());
+    }
+
+    function updateNowViewing() {
+      const now = Date.now();
+      let users = JSON.parse(localStorage.getItem('now-users') || '{}');
+      users[navigator.userAgent] = now;
+
+      // 古いアクセス削除
+      for (let k in users) {
+        if (now - users[k] > SESSION_LIFETIME) delete users[k];
+      }
+
+      localStorage.setItem('now-users', JSON.stringify(users));
+      nowSpan.textContent = Object.keys(users).length;
+    }
+    let tapCount = 0;
+const img = document.getElementById('secret-img');
+const box = document.getElementById('counter-box');
+
+img.addEventListener('click', () => {
+  tapCount++;
+  if (tapCount === 8) {
+    box.style.display = 'block';
+    loadCounter();
+  }
+});
+    function loadCounter() {
+      const NAMESPACE = 'amawasa.github.io';
+      const KEY = 'site';
+      fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`)
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("total").textContent = data.value;
+        });
+      }
+
+    setInterval(updateNowViewing, 3000);
+    updateNowViewing();
+
 
 
 // ページ内の .fade-section 全部を監視
