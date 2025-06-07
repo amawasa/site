@@ -772,7 +772,7 @@ img.addEventListener('click', () => {
   }
 });
 function yuuzi() {
-  if (hoge >= 5)
+  if (hoge >= 5) {
   document.getElementById("matiken").style.display = "block"; 
 }
 }
