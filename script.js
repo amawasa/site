@@ -772,7 +772,9 @@ img.addEventListener('click', () => {
   }
 });
 function yuuzi() {
+  if (hoge >= 5)
   document.getElementById("matiken").style.display = "block"; 
+}
 }
     function loadCounter() {
       const NAMESPACE = 'amawasa.github.io';
