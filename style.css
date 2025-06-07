@@ -1262,9 +1262,6 @@ html, body {
   z-index: 3;
   display: none;
 }
-#matiken{
-  display: none;
-}
 
 #character-img {
   height: 50vh;
@@ -1345,4 +1342,4 @@ html, body {
   border: 2px solid white;
   padding: 8px 12px;
   font-size: 1rem;
-                           }
+  border
