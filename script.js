@@ -632,7 +632,7 @@ const io = new IntersectionObserver((entries, observer)=> {
     }
   });
 }, options);
-let hoge = 0;
+
 function setupImageZoom(id) {
   const img = document.getElementById(id);
   if (!img) return;
@@ -664,15 +664,12 @@ setupImageZoom('img2');
 // ヒントボタン押下でYes/Noダイアログを表示
 document.getElementById('hint-button').addEventListener('click', () => {
   document.getElementById('hint-dialog').classList.remove('hidden');
-hoge++;
-  yuuzi();
 });
 
 // Yesボタンの処理
 document.getElementById('hint-yes').addEventListener('click', () => {
   alert('「かみ」が「みみ」になるとき｛か　が　み｝なので');
   document.getElementById('hint-dialog').classList.add('hidden');
-  
 });
 
 // Noボタンの処理
@@ -771,11 +768,6 @@ img.addEventListener('click', () => {
     loadCounter();
   }
 });
-function yuuzi() {
-  if (hoge >= 5) {
-  document.getElementById("matiken").style.display = "block"; 
-}
-}
     function loadCounter() {
       const NAMESPACE = 'amawasa.github.io';
       const KEY = 'site';
