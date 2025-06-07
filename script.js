@@ -632,7 +632,7 @@ const io = new IntersectionObserver((entries, observer)=> {
     }
   });
 }, options);
-const hoge = 0;
+let hoge = 0;
 function setupImageZoom(id) {
   const img = document.getElementById(id);
   if (!img) return;
