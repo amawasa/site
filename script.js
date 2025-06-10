@@ -767,25 +767,14 @@ img.addEventListener('click', () => {
     box.style.display = 'block';
     loadCounter();
   }
-});
+});//ここから追加
 
-function applyBodyStyles() {
-  const body = document.body;
-  body.style.fontFamily = "Arial, sans-serif";
-  body.style.backgroundColor = "#f3f3f3";
-  body.style.margin = "0";
-  body.style.padding = "0";
-  body.style.display = "flex";
-  body.style.justifyContent = "center";
-  body.style.alignItems = "center";
-  body.style.minHeight = "100vh";
-}
 
 
 function showaaa() {
   document.getElementById('AAA').style.display = 'block';
   document.getElementById('BBB').style.display = 'none';
-  applyBodyStyles()
+
 }
 
 function nextStep(stepNumber) {
