@@ -772,7 +772,7 @@ img.addEventListener('click', () => {
 
 
 function showaaa() {
-  document.getElementById('AAA').style.display = 'block';
+  document.getElementById('AAA').style.display = 'flex';
   document.getElementById('BBB').style.display = 'none';
 
 }
