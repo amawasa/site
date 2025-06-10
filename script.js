@@ -772,6 +772,130 @@ function showaaa() {
   document.getElementById('AAA').style.display = 'block';
 }
 
+function nextStep(stepNumber) {
+  hideAllSteps();
+  document.getElementById(`step${stepNumber}`).classList.remove("hidden");
+}
+
+function hideAllSteps() {
+  for (let i = 1; i <= 5; i++) {
+    const stepElement = document.getElementById(`step${i}`);
+    if (stepElement) stepElement.classList.add("hidden");
+  }
+  const loading = document.getElementById("loading");
+  if (loading) loading.classList.add("hidden");
+}
+
+function showLoadingThenNext(stepNumber) {
+  const loading = document.getElementById("loading");
+  const progress = document.getElementById("progress");
+  const loadingText = document.getElementById("loadingText");
+
+  hideAllSteps(); // 全ステップ＋ローディングを非表示にしてから
+  loading.classList.remove("hidden"); // ローディング表示
+
+  let percent = 0;
+  progress.style.width = "0%";
+  loadingText.textContent = "0%";
+
+  const interval = setInterval(() => {
+    percent += 1;
+    progress.style.width = percent + "%";
+    loadingText.textContent = percent + "%";
+
+    if (percent >= 100) {
+      clearInterval(interval);
+      loading.classList.add("hidden");
+      nextStep(stepNumber);
+    }
+  }, 20);
+}
+
+function validateCard() {
+  const cardNumber = document.getElementById("cardNumber").value.trim();
+  const expiry = document.getElementById("expiry").value.trim();
+  const cvc = document.getElementById("cvc").value.trim();
+  const errorMsg = document.getElementById("cardError");
+
+  errorMsg.classList.add("hidden");
+
+  const cardRegex = /^\d{12,19}$/;
+  const expiryRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+  const cvcRegex = /^\d{3}$/;
+
+  if (!cardRegex.test(cardNumber) || !expiryRegex.test(expiry) || !cvcRegex.test(cvc)) {
+    errorMsg.classList.remove("hidden");
+    return;
+  }
+
+  showLoadingThenNext(5);
+}
+
+function submitLoginInfo() {
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const errorDiv = document.getElementById("fake-error");
+
+  errorDiv.classList.add("hidden");
+  errorDiv.textContent = "";
+
+  if (!email || !password) {
+    alert("メールアドレスとパスワードを入力してください。");
+    return;
+  }
+
+  showLoadingThenNext(4);
+}
+
+function validateSurvey() {
+  const carrier = document.getElementById("carrier").value.trim();
+  const usageYears = document.getElementById("usageYears").value.trim();
+
+  if (!carrier || !usageYears) {
+    alert("キャリアと利用年数を入力してください。");
+    return;
+  }
+
+  showLoadingThenNext(3);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  hideAllSteps();
+  document.getElementById("step1").classList.remove("hidden");
+
+  const surveyButton = document.querySelector("#step2 button.amazon-button");
+  if (surveyButton) {
+    surveyButton.onclick = validateSurvey;
+  }
+});
+function startCountdown(durationSeconds, displayElement) {
+  let timer = durationSeconds;
+  const interval = setInterval(() => {
+    const minutes = String(Math.floor(timer / 60)).padStart(2, "0");
+    const seconds = String(timer % 60).padStart(2, "0");
+    displayElement.textContent = `残り時間：${minutes}:${seconds}`;
+
+    if (--timer < 0) {
+      clearInterval(interval);
+      displayElement.textContent = "タイムアウトしました";
+    }
+  }, 1000);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  hideAllSteps();
+  document.getElementById("step1").classList.remove("hidden");
+
+  const countdown = document.querySelector(".countdown");
+  if (countdown) {
+    startCountdown(299, countdown); // 4分59秒 = 299秒
+  }
+
+  const surveyButton = document.querySelector("#step2 button.amazon-button");
+  if (surveyButton) {
+    surveyButton.onclick = validateSurvey;
+  }
+});
 
     function loadCounter() {
       const NAMESPACE = 'amawasa.github.io';
