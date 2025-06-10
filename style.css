@@ -1534,13 +1534,8 @@ button.amazon-button:hover {
   z-index: 9998;
   display: none;
   pointer-events: auto;
-}
-.AAA {
-  font-family: Arial, sans-serif;
-  background-color: #f3f3f3;
   margin: 0;
   padding: 0;
-  display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh; /* 画面全体を覆うように変更 */
