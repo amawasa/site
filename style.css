@@ -1330,6 +1330,208 @@ html, body {
 }
 #hint-dialog button:hover { opacity: .8; }
 
+/* Amazon風ログインフォームとポイント還元サイトのスタイルを統合 */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f3f3f3;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* 画面全体を覆うように変更 */
+}
+
+.container {
+  background-color: #ffffff;
+  padding: 40px 50px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 360px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.2);
+  text-align: center; /* 中央寄せに */
+}
+
+h1 {
+  font-weight: 400;
+  font-size: 24px;
+  margin-bottom: 24px;
+  color: #111;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #111;
+  text-align: left; /* ラベルは左寄せ */
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 18px;
+  box-sizing: border-box;
+  font-size: 16px;
+  border: 1px solid #a6a6a6;
+  border-radius: 3px;
+  transition: border-color 0.2s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+  border-color: #f90;
+  outline: none;
+}
+
+button.amazon-button { /* クラス名変更 */
+  background-color: #f90;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 12px;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  margin-top: 10px; /* ボタン上下のマージン */
+}
+
+button.amazon-button:hover {
+  background-color: #e38900;
+}
+
+.footer {
+  margin-top: 18px;
+  font-size: 13px;
+  color: #555;
+  text-align: center;
+}
+
+.footer a {
+  color: #0066c0;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* ポイント還元サイト由来のスタイル */
+.hiddenn { display: none; }
+.step {
+  opacity: 1; /* 初期状態は非表示ではないので1 */
+  transform: translateY(0);
+  transition: all 0.5s ease-in-out;
+}
+.step.hiddenn { /* hiddenクラスがついたら非表示 */
+  opacity: 0;
+  transform: translateY(20px);
+  position: absolute; /* 他の要素に影響を与えないように */
+  left: -9999px; /* 画面外に移動 */
+}
+
+.fake-ssl {
+  font-size: 0.9em;
+  color: green;
+  margin: 10px 0;
+}
+
+.countdown {
+  font-weight: bold;
+  color: red;
+  margin: 10px;
+}
+.blink {
+  animation: blink-animation 1s steps(2, start) infinite;
+}
+@keyframes blink-animation {
+  to { visibility: hidden; }
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  background-color: #fce4e4;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 3px;
+  font-size: 14px;
+  text-align: left;
+}
+
+.loading-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.9);
+  z-index: 1000;
+  /* Flexboxで中央寄せ */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hiddenn {
+  display: none;
+}
+
+.progress-bar {
+  width: 80%;
+  max-width: 300px; /* 最大幅を設定 */
+  height: 20px;
+  background-color: #ccc;
+  margin: 20px auto;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #999;
+}
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background-color: #4caf50;
+  transition: width 0.1s linear;
+}
+#loadingText {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.secure-msg {
+  margin-top: 10px;
+  color: #555;
+  font-style: italic;
+}
+
+.testimonial {
+  font-style: italic;
+  color: #444;
+  margin-top: 30px;
+}
+
+/* Amazon風ログインの「エラー」表示 */
+#fake-error {
+  background-color: #fce4e4;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 3px;
+  font-size: 14px;
+  text-align: left;
+}
+
+
 /* ---- 3) 非表示に使う共通クラス -------------------- */
 .hidden { display: none; }
 #hint-button {
