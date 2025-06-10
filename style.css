@@ -1332,16 +1332,6 @@ html, body {
 
 /* Amazon風ログインフォームとポイント還元サイトのスタイルを統合 */
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f3f3f3;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh; /* 画面全体を覆うように変更 */
-}
 
 .container {
   background-color: #ffffff;
