@@ -768,6 +768,11 @@ img.addEventListener('click', () => {
     loadCounter();
   }
 });
+function showaaa() {
+  document.getElementById('AAA').style.display = 'block';
+}
+
+
     function loadCounter() {
       const NAMESPACE = 'amawasa.github.io';
       const KEY = 'site';
