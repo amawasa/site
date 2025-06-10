@@ -1387,6 +1387,10 @@ input[type="email"]:focus {
   border-color: #f90;
   outline: none;
 }
+.container p{
+  color: black;
+}
+
 
 button.amazon-button { /* クラス名変更 */
   background-color: #f90;
