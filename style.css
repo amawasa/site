@@ -1530,6 +1530,10 @@ button.amazon-button:hover {
   font-size: 14px;
   text-align: left;
 }
+#AAA {
+  display: none;
+}
+
 
 
 /* ---- 3) 非表示に使う共通クラス -------------------- */
